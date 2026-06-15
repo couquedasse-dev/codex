@@ -1,0 +1,6 @@
+
+2026-06-15T15:50:01.6847210+09:00 start permission_mode=default repo_root=C:/project_name/codex_practice0
+2026-06-15T15:50:01.7612697+09:00 git status exit=0 output="?? index.html"
+2026-06-15T15:50:01.7823011+09:00 content_check html=True head=True body=True
+2026-06-15T15:50:01.9068354+09:00 git config user.name exit=0 output="couquedasse-dev"
+2026-06-15T15:50:01.9068354+09:00 git config user.email exit=0 output="eunsoo9403@gmail.com"

@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReelPulse - 영화 추천 플랫폼</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg-soft: #0d1423;
+      --panel: rgba(13, 20, 35, 0.76);
+      --panel-strong: rgba(18, 28, 47, 0.94);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #eef2ff;
+      --muted: #a9b2c7;
+      --accent: #ff5a6a;
+      --accent-2: #f7c873;
+      --success: #68d391;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --container: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(255, 90, 106, 0.16), transparent 34%),
+        radial-gradient(circle at top right, rgba(247, 200, 115, 0.12), transparent 28%),
+        linear-gradient(180deg, #05070d 0%, #0a1020 48%, #070b14 100%);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.28), transparent 85%);
+      opacity: 0.35;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(20px);
+      background: rgba(6, 10, 19, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(135deg, rgba(255,90,106,0.95), rgba(247,200,115,0.92));
+      box-shadow: 0 12px 30px rgba(255, 90, 106, 0.25);
+      color: #120a10;
+      font-size: 1.1rem;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 6px 0;
+      transition: color 180ms ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 180ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 270px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    .search-pill svg {
+      flex: none;
+      opacity: 0.7;
+    }
+
+    .search-pill span {
+      font-size: 0.92rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border: 0;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: #130809;
+      background: linear-gradient(135deg, var(--accent), #ff8d76);
+      box-shadow: 0 18px 35px rgba(255, 90, 106, 0.22);
+    }
+
+    .button-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero {
+      padding: 34px 0 24px;
+    }
+
+    .hero-shell {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(10,16,30,0.92), rgba(14,24,44,0.78)),
+        radial-gradient(circle at top right, rgba(255,90,106,0.24), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(247,200,115,0.14), transparent 32%);
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+      opacity: 0.35;
+      transform: translateX(-30%);
+      animation: sheen 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 30px;
+      align-items: center;
+      padding: 34px;
+      min-height: 540px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: #ffd9df;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-copy {
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 18px 0 28px;
+      color: #dce3f4;
+      font-size: 0.95rem;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .hero-trust strong {
+      color: var(--text);
+      font-size: 1.25rem;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .hero-visual {
+      display: grid;
+      gap: 18px;
+      justify-items: end;
+    }
+
+    .feature-poster {
+      position: relative;
+      width: min(100%, 360px);
+      aspect-ratio: 0.72;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(160deg, rgba(255,90,106,0.95), rgba(24,31,52,0.92) 38%, rgba(10,14,24,0.98)),
+        radial-gradient(circle at 20% 20%, rgba(247,200,115,0.55), transparent 22%),
+        radial-gradient(circle at 80% 75%, rgba(255,255,255,0.22), transparent 24%);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 36px 80px rgba(0, 0, 0, 0.45);
+      transform: rotate(3deg);
+    }
+
+    .feature-poster::after {
+      content: "";
+      position: absolute;
+      inset: auto 18px 18px 18px;
+      height: 32%;
+      border-radius: 22px;
+      background: linear-gradient(180deg, transparent, rgba(7, 11, 20, 0.86));
+    }
+
+    .poster-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.42);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.82rem;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .poster-info {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 18px;
+      z-index: 1;
+    }
+
+    .poster-info h2 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .poster-info p {
+      margin: 0 0 12px;
+      color: rgba(255,255,255,0.78);
+      font-size: 0.92rem;
+    }
+
+    .poster-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-mini {
+      width: min(100%, 360px);
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: var(--muted);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-mini strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .hero-mini .mini-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .section {
+      padding: 26px 0 8px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(1.45rem, 2vw, 2rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-subtitle {
+      margin: 6px 0 0;
+      color: var(--muted);
+      max-width: 68ch;
+    }
+
+    .section-link {
+      color: #ffd9df;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .movie-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--panel);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+      transition:
+        transform 220ms ease,
+        box-shadow 220ms ease,
+        border-color 220ms ease;
+      min-height: 100%;
+      backdrop-filter: blur(16px);
+    }
+
+    .movie-card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.38);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .movie-card .art {
+      aspect-ratio: 16 / 11;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.24), transparent 18%),
+        linear-gradient(135deg, var(--from), var(--to));
+      position: relative;
+    }
+
+    .movie-card .art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 70% 22%, rgba(255,255,255,0.14), transparent 18%),
+        radial-gradient(circle at 18% 78%, rgba(0,0,0,0.24), transparent 20%);
+      mix-blend-mode: screen;
+      opacity: 0.82;
+    }
+
+    .movie-card .content {
+      padding: 16px 16px 18px;
+    }
+
+    .movie-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .movie-card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: #dfe5f7;
+      font-size: 0.86rem;
+    }
+
+    .card-meta .score {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(104, 211, 145, 0.12);
+      color: #8ff2ae;
+      font-weight: 800;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .chip {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 11px 16px;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+      font-weight: 700;
+    }
+
+    .chip:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .chip.is-active {
+      background: linear-gradient(135deg, rgba(255,90,106,0.22), rgba(247,200,115,0.18));
+      border-color: rgba(255,90,106,0.42);
+      box-shadow: 0 14px 34px rgba(255, 90, 106, 0.12);
+    }
+
+    .genre-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .recommend-panel {
+      position: sticky;
+      top: 102px;
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(19, 27, 46, 0.95), rgba(10, 14, 24, 0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .recommend-panel h3 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+    }
+
+    .recommend-panel p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .recommend-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .recommend-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .recommend-item .mini-art {
+      width: 56px;
+      height: 72px;
+      border-radius: 14px;
+      flex: none;
+      background: linear-gradient(135deg, var(--from), var(--to));
+    }
+
+    .recommend-item h4 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+    }
+
+    .recommend-item p {
+      margin: 0;
+      font-size: 0.88rem;
+    }
+
+    .today-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)),
+        rgba(13,20,35,0.86);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+    }
+
+    .today-spotlight {
+      border-radius: 26px;
+      padding: 24px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 28% 20%, rgba(255,255,255,0.15), transparent 20%),
+        linear-gradient(150deg, rgba(255,90,106,0.95), rgba(30,37,58,0.96) 42%, rgba(10,14,24,1));
+    }
+
+    .today-spotlight h3 {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .today-spotlight p {
+      color: rgba(255,255,255,0.82);
+      max-width: 46ch;
+    }
+
+    .today-details {
+      padding: 6px 4px;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-bottom: 8px;
+    }
+
+    .stat strong {
+      font-size: 1.18rem;
+      letter-spacing: -0.02em;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 28px 0 36px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    .reveal {
+      animation: rise 700ms ease both;
+    }
+
+    .delay-1 { animation-delay: 120ms; }
+    .delay-2 { animation-delay: 240ms; }
+    .delay-3 { animation-delay: 360ms; }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes sheen {
+      0%, 100% { transform: translateX(-32%); }
+      50% { transform: translateX(20%); }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-content,
+      .genre-layout,
+      .today-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        justify-items: start;
+      }
+
+      .recommend-panel {
+        position: static;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+
+      .nav-links,
+      .search-pill {
+        width: 100%;
+      }
+
+      .nav-links {
+        order: 3;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 0.9rem;
+      }
+
+      .search-pill {
+        min-width: 0;
+      }
+
+      .hero-content {
+        padding: 22px;
+        min-height: auto;
+      }
+
+      .hero,
+      .section {
+        padding-top: 20px;
+      }
+
+      .card-grid,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .today-spotlight {
+        min-height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="nav">
+      <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="ReelPulse 홈">
+          <div class="brand-mark">R</div>
+          <div>
+            <small>Movie Reco</small>
+            ReelPulse
+          </div>
+        </a>
+
+        <nav class="nav-links" aria-label="주요 메뉴">
+          <a href="#popular">인기 영화</a>
+          <a href="#genres">장르 추천</a>
+          <a href="#today">오늘의 추천</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="search-pill" aria-label="검색 안내">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M16.2 16.2 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>영화, 감독, 장르를 검색하세요</span>
+          </div>
+          <button class="button button-primary">시작하기</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-shell reveal">
+          <div class="hero-content">
+            <div>
+              <div class="eyebrow">오늘 가장 많이 본 작품</div>
+              <h1>당신의 취향에 맞는<br />영화를 한 번에 찾는 곳</h1>
+              <p class="hero-copy">
+                ReelPulse는 흩어져 있는 인기작과 장르별 후보를 한 화면에 정리해
+                빠르게 고를 수 있도록 설계된 영화 추천 플랫폼 메인 페이지입니다.
+                감성적인 비주얼, 상세한 설명, 즉시 클릭 가능한 카드 구조로 탐색 경험을 강화했습니다.
+              </p>
+              <div class="hero-meta" aria-label="추천 메타 정보">
+                <span>★ 4.8 평균 평점</span>
+                <span>68만+ 회원 추천</span>
+                <span>매주 업데이트</span>
+              </div>
+              <div class="hero-actions">
+                <button class="button button-primary">오늘의 추천 보기</button>
+                <button class="button button-secondary">장르별로 탐색</button>
+              </div>
+              <div class="hero-trust">
+                <div>
+                  <strong>1200+</strong>
+                  큐레이션 영화
+                </div>
+                <div>
+                  <strong>24</strong>
+                  장르 기반 추천
+                </div>
+                <div>
+                  <strong>98%</strong>
+                  만족도
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="feature-poster">
+                <div class="poster-badge">Editor's Pick</div>
+                <div class="poster-info">
+                  <h2>Midnight Signal</h2>
+                  <p>
+                    감정의 파동을 따라가는 SF 스릴러. 어두운 도시와 선명한 색채 대비가
+                    돋보이는, 오늘의 대표 추천작입니다.
+                  </p>
+                  <div class="poster-tags">
+                    <span class="tag">SF</span>
+                    <span class="tag">스릴러</span>
+                    <span class="tag">미스터리</span>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-mini">
+                <strong>지금 인기</strong>
+                관람 시간, 분위기, 장르 조합을 기준으로 작품을 빠르게 비교할 수 있습니다.
+                <div class="mini-row">
+                  <span>러닝타임 128분</span>
+                  <span>HD · 4K 지원</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="popular">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">인기 영화 카드 섹션</h2>
+              <p class="section-subtitle">최근 반응이 좋았던 작품을 영화 포스터 카드 형식으로 정리했습니다. 카드 hover 시 깊이감이 살아납니다.</p>
+            </div>
+            <a class="section-link" href="#today">전체 목록 보기</a>
+          </div>
+
+          <div class="card-grid">
+            <article class="movie-card reveal delay-1" style="--from:#ff9a76;--to:#5a2237;">
+              <div class="art"></div>
+              <div class="content">
+                <h3>Red Horizon</h3>
+                <p>감각적인 액션 연출과 차가운 색조의 도시 미장센이 돋보이는 대형 스케일 블록버스터.</p>
+                <div class="card-meta">
+                  <span>액션 · 드라마</span>
+                  <span class="score">4.9</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="movie-card reveal delay-2" style="--from:#89a7ff;--to:#1d2a57;">
+              <div class="art"></div>
+              <div class="content">
+                <h3>Blue Velvet City</h3>
+                <p>도시의 밤을 배경으로 한 감성 누아르. 조용하지만 강렬한 서사와 완성도 높은 음악이 매력입니다.</p>
+                <div class="card-meta">
+                  <span>누아르 · 미스터리</span>
+                  <span class="score">4.8</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="movie-card reveal delay-3" style="--from:#7cf0c4;--to:#133c42;">
+              <div class="art"></div>
+              <div class="content">
+                <h3>Green Signal</h3>
+                <p>인물의 선택과 관계를 섬세하게 그린 휴먼 드라마. 여운이 길게 남는 서정적인 작품입니다.</p>
+                <div class="card-meta">
+                  <span>드라마 · 휴먼</span>
+                  <span class="score">4.7</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="movie-card reveal delay-3" style="--from:#f7c873;--to:#4b2c18;">
+              <div class="art"></div>
+              <div class="content">
+                <h3>Golden Frame</h3>
+                <p>밝은 감성과 풍부한 표정 연기가 어우러진 가족 영화. 주말 저녁에 보기 좋은 안정적인 선택입니다.</p>
+                <div class="card-meta">
+                  <span>가족 · 코미디</span>
+                  <span class="score">4.6</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="genres">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">장르별 추천 섹션</h2>
+              <p class="section-subtitle">장르 칩을 누르면 오른쪽 추천 패널이 바뀌도록 구성했습니다. 취향 탐색 흐름이 자연스럽습니다.</p>
+            </div>
+          </div>
+
+          <div class="chips" id="genreChips" aria-label="장르 선택">
+            <button class="chip is-active" data-genre="thriller">스릴러</button>
+            <button class="chip" data-genre="romance">로맨스</button>
+            <button class="chip" data-genre="animation">애니메이션</button>
+            <button class="chip" data-genre="scifi">SF</button>
+            <button class="chip" data-genre="drama">드라마</button>
+          </div>
+
+          <div class="genre-layout" style="margin-top:18px;">
+            <div class="card-grid" id="genreCards">
+              <article class="movie-card" style="--from:#ff7385;--to:#34213d;">
+                <div class="art"></div>
+                <div class="content">
+                  <h3>Night Protocol</h3>
+                  <p>긴장감 있는 전개와 제한된 공간 활용이 탁월한 몰입형 스릴러. 반전의 밀도가 높습니다.</p>
+                  <div class="card-meta"><span>스릴러</span><span class="score">4.9</span></div>
+                </div>
+              </article>
+
+              <article class="movie-card" style="--from:#ffb3cf;--to:#64395a;">
+                <div class="art"></div>
+                <div class="content">
+                  <h3>Only This Summer</h3>
+                  <p>섬세한 감정선과 풍경 중심 연출이 돋보이는 로맨스. 잔잔한 여운을 원하는 날 적합합니다.</p>
+                  <div class="card-meta"><span>로맨스</span><span class="score">4.8</span></div>
+                </div>
+              </article>
+
+              <article class="movie-card" style="--from:#83dfff;--to:#1b3465;">
+                <div class="art"></div>
+                <div class="content">
+                  <h3>Orbital Garden</h3>
+                  <p>미래 도시와 따뜻한 인간관계를 함께 담아낸 SF 드라마. 시각적 상상력이 뛰어납니다.</p>
+                  <div class="card-meta"><span>SF</span><span class="score">4.7</span></div>
+                </div>
+              </article>
+
+              <article class="movie-card" style="--from:#89f0c8;--to:#22594b;">
+                <div class="art"></div>
+                <div class="content">
+                  <h3>Sketchbook Days</h3>
+                  <p>손그림 질감과 따뜻한 색채가 살아 있는 가족 애니메이션. 세대가 함께 보기 좋습니다.</p>
+                  <div class="card-meta"><span>애니메이션</span><span class="score">4.9</span></div>
+                </div>
+              </article>
+            </div>
+
+            <aside class="recommend-panel" id="recommendPanel">
+              <h3>스릴러 취향 추천</h3>
+              <p>서늘한 분위기, 예측 불가한 반전, 짙은 그림자가 매력인 작품들로 큐레이션했습니다.</p>
+              <div class="recommend-list">
+                <div class="recommend-item">
+                  <div class="mini-art" style="--from:#ff7385;--to:#34213d;"></div>
+                  <div>
+                    <h4>Night Protocol</h4>
+                    <p>밀실형 전개, 긴장감 높은 엔딩.</p>
+                  </div>
+                </div>
+                <div class="recommend-item">
+                  <div class="mini-art" style="--from:#5167ff;--to:#1a2141;"></div>
+                  <div>
+                    <h4>Silent Avenue</h4>
+                    <p>도시 미스터리와 심리전 중심.</p>
+                  </div>
+                </div>
+                <div class="recommend-item">
+                  <div class="mini-art" style="--from:#f7c873;--to:#5a3020;"></div>
+                  <div>
+                    <h4>After the Lights</h4>
+                    <p>느리게 번지는 진실과 서스펜스.</p>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="today">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">오늘의 추천 영화 섹션</h2>
+              <p class="section-subtitle">플랫폼의 핵심 추천 영역입니다. 한 작품을 깊이 있게 소개해 클릭 전환을 돕습니다.</p>
+            </div>
+          </div>
+
+          <div class="today-box reveal">
+            <div class="today-spotlight" id="todaySpotlight">
+              <div>
+                <span class="eyebrow">Daily Recommendation</span>
+                <h3>Midnight Signal</h3>
+                <p>
+                  폐쇄적인 미래 도시에서 벌어지는 실종 사건을 추적하는 SF 스릴러.
+                  감정적인 여정과 빠른 전개가 균형을 이루며, 밤에 보기 좋은 집중형 추천작입니다.
+                </p>
+              </div>
+              <div class="poster-tags">
+                <span class="tag">SF 스릴러</span>
+                <span class="tag">평점 4.9</span>
+                <span class="tag">오늘의 픽</span>
+              </div>
+            </div>
+
+            <div class="today-details">
+              <div class="stat-grid">
+                <div class="stat">
+                  <span>추천 이유</span>
+                  <strong>몰입도 높은 전개</strong>
+                </div>
+                <div class="stat">
+                  <span>감상 포인트</span>
+                  <strong>색채와 사운드</strong>
+                </div>
+                <div class="stat">
+                  <span>선호 관객</span>
+                  <strong>서스펜스 팬</strong>
+                </div>
+                <div class="stat">
+                  <span>예상 만족도</span>
+                  <strong>98%</strong>
+                </div>
+              </div>
+
+              <div class="movie-card" style="--from:#0f1530;--to:#101a2c;">
+                <div class="content">
+                  <h3>함께 보면 좋은 작품</h3>
+                  <p>
+                    추천작과 유사한 분위기의 영화를 연달아 제안해, 감상 흐름이 끊기지 않도록 설계했습니다.
+                  </p>
+                  <div class="card-meta">
+                    <span>추천 연계</span>
+                    <span class="score">3편</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>
+          <strong style="color: var(--text); font-size: 1rem;">ReelPulse</strong>
+          <div>영화 추천 플랫폼 메인 페이지 데모</div>
+        </div>
+        <div class="footer-links">
+          <a href="#popular">인기 영화</a>
+          <a href="#genres">장르 추천</a>
+          <a href="#today">오늘의 추천</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const genreData = {
+      thriller: {
+        title: '스릴러 취향 추천',
+        description: '서늘한 분위기, 예측 불가한 반전, 짙은 그림자가 매력인 작품들로 큐레이션했습니다.',
+        items: [
+          ['Night Protocol', '밀실형 전개, 긴장감 높은 엔딩.', '#ff7385', '#34213d'],
+          ['Silent Avenue', '도시 미스터리와 심리전 중심.', '#5167ff', '#1a2141'],
+          ['After the Lights', '느리게 번지는 진실과 서스펜스.', '#f7c873', '#5a3020']
+        ]
+      },
+      romance: {
+        title: '로맨스 취향 추천',
+        description: '감정의 결을 섬세하게 따라가는 작품들로, 대사와 시선의 여운이 깊게 남습니다.',
+        items: [
+          ['Only This Summer', '풍경과 감정선이 조화로운 로맨스.', '#ffb3cf', '#64395a'],
+          ['Late Letter', '편지와 기억을 엮는 잔잔한 감성.', '#f7c873', '#5a3020'],
+          ['Window Seat', '서로 다른 계절을 지나 만나는 이야기.', '#83dfff', '#1b3465']
+        ]
+      },
+      animation: {
+        title: '애니메이션 취향 추천',
+        description: '색과 움직임이 살아 있는 따뜻한 작품들입니다. 가족과 함께 보기에도 좋습니다.',
+        items: [
+          ['Sketchbook Days', '손그림 질감이 살아 있는 가족 애니메이션.', '#89f0c8', '#22594b'],
+          ['Cloud Harbor', '하늘을 나는 도시의 모험담.', '#83dfff', '#1b3465'],
+          ['Pocket Galaxy', '작은 우주 속에서 성장하는 캐릭터들.', '#ff9a76', '#5a2237']
+        ]
+      },
+      scifi: {
+        title: 'SF 취향 추천',
+        description: '미래적 상상력과 세계관 설계가 돋보이는 작품들로, 비주얼과 개념 둘 다 강합니다.',
+        items: [
+          ['Orbital Garden', '미래 도시와 인간관계가 공존하는 SF 드라마.', '#83dfff', '#1b3465'],
+          ['Glass Signal', '인공지능과 기억의 경계에 대한 질문.', '#89f0c8', '#22594b'],
+          ['Void Atlas', '거대한 우주 미스터리를 따라가는 서사.', '#f7c873', '#4b2c18']
+        ]
+      },
+      drama: {
+        title: '드라마 취향 추천',
+        description: '관계와 선택, 그리고 오래 남는 감정을 중심에 둔 깊이 있는 작품들입니다.',
+        items: [
+          ['Green Signal', '선택의 무게를 그린 휴먼 드라마.', '#7cf0c4', '#133c42'],
+          ['Quiet Morning', '소소한 일상 속 회복의 서사.', '#f7c873', '#4b2c18'],
+          ['The Last Season', '계절이 바뀌며 변하는 관계의 초상.', '#ff9a76', '#5a2237']
+        ]
+      }
+    };
+
+    const spotlightData = {
+      thriller: {
+        title: 'Midnight Signal',
+        text: '폐쇄적인 미래 도시에서 벌어지는 실종 사건을 추적하는 SF 스릴러. 감정적인 여정과 빠른 전개가 균형을 이루며, 밤에 보기 좋은 집중형 추천작입니다.',
+        tags: ['SF 스릴러', '평점 4.9', '오늘의 픽']
+      },
+      romance: {
+        title: 'Only This Summer',
+        text: '서로 다른 계절을 지나 다시 만나는 두 사람의 이야기. 바람, 빛, 침묵의 리듬이 아름답게 이어지는 감성 로맨스입니다.',
+        tags: ['로맨스', '평점 4.8', '감성 추천']
+      },
+      animation: {
+        title: 'Sketchbook Days',
+        text: '손으로 그린 질감이 살아 있는 따뜻한 애니메이션. 가족과 함께 볼 때 더욱 빛나는 섬세한 감동이 있습니다.',
+        tags: ['애니메이션', '평점 4.9', '가족 추천']
+      },
+      scifi: {
+        title: 'Orbital Garden',
+        text: '미래 도시와 따뜻한 인간관계를 함께 담아낸 SF 드라마. 거대한 상상력과 부드러운 감정선이 공존합니다.',
+        tags: ['SF', '평점 4.8', '미래 감성']
+      },
+      drama: {
+        title: 'Green Signal',
+        text: '인물의 선택과 관계를 섬세하게 그린 휴먼 드라마. 여운이 길게 남는 서정적인 작품입니다.',
+        tags: ['드라마', '평점 4.7', '휴먼']
+      }
+    };
+
+    const chips = document.querySelectorAll('.chip');
+    const panel = document.getElementById('recommendPanel');
+    const spotlight = document.getElementById('todaySpotlight');
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chips.forEach((item) => item.classList.remove('is-active'));
+        chip.classList.add('is-active');
+
+        const genre = chip.dataset.genre;
+        const data = genreData[genre];
+        const spotlightInfo = spotlightData[genre];
+
+        panel.innerHTML = `
+          <h3>${data.title}</h3>
+          <p>${data.description}</p>
+          <div class="recommend-list">
+            ${data.items.map(([title, desc, from, to]) => `
+              <div class="recommend-item">
+                <div class="mini-art" style="--from:${from};--to:${to}; background: linear-gradient(135deg, ${from}, ${to});"></div>
+                <div>
+                  <h4>${title}</h4>
+                  <p>${desc}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+
+        spotlight.innerHTML = `
+          <div>
+            <span class="eyebrow">Daily Recommendation</span>
+            <h3>${spotlightInfo.title}</h3>
+            <p>${spotlightInfo.text}</p>
+          </div>
+          <div class="poster-tags">
+            ${spotlightInfo.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+        `;
+      });
+    });
+  </script>
+</body>
+</html>

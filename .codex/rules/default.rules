@@ -1,0 +1,92 @@
+# 프로젝트 루트 내부의 안전한 탐색과 읽기는 자동 허용한다.
+prefix_rule(
+    pattern = [["Get-ChildItem", "dir", "ls"]],
+    decision = "allow",
+    justification = "List project files without changing the workspace.",
+)
+
+prefix_rule(
+    pattern = [["Get-Content", "type", "cat"]],
+    decision = "allow",
+    justification = "Read project files without modifying them.",
+)
+
+prefix_rule(
+    pattern = [["Select-String", "rg", "findstr"]],
+    decision = "allow",
+    justification = "Search project files without changing state.",
+)
+
+prefix_rule(
+    pattern = ["Test-Path"],
+    decision = "allow",
+    justification = "Check paths and tool availability without side effects.",
+)
+
+prefix_rule(
+    pattern = ["git", ["status", "diff", "log", "show", "add"]],
+    decision = "allow",
+    justification = "Inspect git state and stage changes without remote effects.",
+)
+
+prefix_rule(
+    pattern = [["New-Item", "ni", "mkdir", "md"]],
+    decision = "allow",
+    justification = "Create files or directories inside the project root.",
+)
+
+prefix_rule(
+    pattern = [["Set-Content", "sc", "Add-Content", "ac", "Copy-Item", "cp", "Move-Item", "mv"]],
+    decision = "allow",
+    justification = "Write or move project files without deleting them.",
+)
+
+# 상태를 바꾸는 git 작업은 확인 후 진행한다.
+prefix_rule(
+    pattern = ["git", ["commit", "checkout", "switch", "branch", "merge", "rebase", "pull", "stash", "restore"]],
+    decision = "prompt",
+    justification = "These commands can change the working tree or history.",
+)
+
+# 삭제 계열과 원격 변경은 기본 금지다.
+prefix_rule(
+    pattern = ["rm", "rmdir", "del", "Remove-Item"],
+    decision = "forbidden",
+    justification = "Use safer file edits instead of deleting files directly.",
+)
+
+prefix_rule(
+    pattern = ["git", "push"],
+    decision = "forbidden",
+    justification = "Do not change remote repositories from Codex.",
+)
+
+prefix_rule(
+    pattern = ["git", "remote", ["add", "set-url", "remove"]],
+    decision = "forbidden",
+    justification = "Do not change git remotes from Codex.",
+)
+
+prefix_rule(
+    pattern = ["git", ["reset", "clean"]],
+    decision = "forbidden",
+    justification = "These commands can discard local work.",
+)
+
+prefix_rule(
+    pattern = [["Get-Content", "type", "cat"], ".env"],
+    decision = "forbidden",
+    justification = "Do not read .env files directly.",
+)
+
+prefix_rule(
+    pattern = [["Set-Content", "sc", "Add-Content", "ac"], ".env"],
+    decision = "forbidden",
+    justification = "Do not overwrite or append to .env files directly.",
+)
+
+prefix_rule(
+    pattern = ["Out-File", ".env"],
+    decision = "forbidden",
+    justification = "Do not write .env files directly.",
+)
