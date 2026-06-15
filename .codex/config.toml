@@ -38,3 +38,21 @@ max_depth = 1
 # 대표 대안은 더 짧은 제한이나 더 긴 제한을 두는 방식이다.
 # 값을 높이면 긴 작업을 끝까지 돌릴 수 있지만 정체가 길어질 수 있고, 낮추면 멈춤을 빨리 감지하지만 큰 작업이 잘릴 수 있다.
 job_max_runtime_seconds = 1800
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
+startup_timeout_sec = 20
+required = false
+
+[mcp_servers.firecrawl]
+command = "powershell.exe"
+args = ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ".codex/mcp/firecrawl.ps1"]
+startup_timeout_sec = 20
+required = false
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]
+startup_timeout_sec = 20
+required = false
