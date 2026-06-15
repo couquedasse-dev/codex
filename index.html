@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>오사카 · 교토 · 고베 7박8일 신혼여행 일정</title>
+  <title>일본 10월 7박 8일 여행 일정</title>
   <style>
     :root {
       --bg: #0b1020;
-      --bg-2: #101933;
-      --panel: rgba(16, 24, 44, 0.82);
-      --panel-strong: rgba(20, 31, 56, 0.96);
+      --bg-2: #101936;
+      --panel: rgba(16, 24, 44, 0.84);
+      --panel-strong: rgba(20, 31, 56, 0.98);
       --line: rgba(255, 255, 255, 0.1);
-      --text: #f6f2ec;
-      --muted: #c0c5d5;
+      --text: #f7f3ec;
+      --muted: #c3cad9;
       --accent: #ff7a6e;
       --accent-2: #f2c36b;
       --accent-3: #8bd6c3;
       --accent-4: #8aa6ff;
-      --shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
       --radius-xl: 32px;
       --radius-lg: 24px;
       --radius-md: 18px;
@@ -25,23 +25,17 @@
       --container: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       min-height: 100vh;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(255, 122, 110, 0.16), transparent 28%),
-        radial-gradient(circle at top right, rgba(242, 195, 107, 0.14), transparent 26%),
+        radial-gradient(circle at top left, rgba(255, 122, 110, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(242, 195, 107, 0.14), transparent 28%),
         radial-gradient(circle at bottom right, rgba(139, 214, 195, 0.12), transparent 22%),
-        linear-gradient(180deg, #090d18 0%, #0d1528 48%, #0b1020 100%);
+        linear-gradient(180deg, #080d18 0%, #0d1528 50%, #0b1020 100%);
       font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
@@ -56,24 +50,14 @@
         linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
       background-size: 72px 72px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25), transparent 80%);
-      opacity: 0.4;
+      opacity: 0.35;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25), transparent 82%);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      position: relative;
-      z-index: 1;
-    }
-
-    .container {
-      width: min(var(--container), calc(100% - 32px));
-      margin: 0 auto;
-    }
+    a { color: inherit; text-decoration: none; }
+    button, summary { font: inherit; }
+    .page { position: relative; z-index: 1; }
+    .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
 
     .nav {
       position: sticky;
@@ -131,6 +115,8 @@
       gap: 20px;
       color: var(--muted);
       font-size: 0.95rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav-links a {
@@ -171,9 +157,7 @@
       transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-    }
+    .button:hover { transform: translateY(-2px); }
 
     .button-primary {
       color: #160c10;
@@ -187,9 +171,7 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .hero {
-      padding: 34px 0 20px;
-    }
+    .hero { padding: 34px 0 20px; }
 
     .hero-shell {
       overflow: hidden;
@@ -204,7 +186,7 @@
 
     .hero-content {
       display: grid;
-      grid-template-columns: 1.12fr 0.88fr;
+      grid-template-columns: 1.08fr 0.92fr;
       gap: 24px;
       align-items: center;
       padding: 34px;
@@ -225,10 +207,7 @@
       text-transform: uppercase;
     }
 
-    h1,
-    h2,
-    h3,
-    h4 {
+    h1, h2, h3, h4 {
       margin: 0;
       line-height: 1.1;
       letter-spacing: -0.03em;
@@ -281,14 +260,14 @@
 
     .poster {
       position: relative;
-      width: min(100%, 380px);
+      width: min(100%, 392px);
       aspect-ratio: 0.74;
       padding: 22px;
       border-radius: 28px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
       background:
-        linear-gradient(155deg, rgba(255, 122, 110, 0.96), rgba(20, 28, 52, 0.96) 38%, rgba(10, 14, 24, 0.98)),
+        linear-gradient(155deg, rgba(255, 122, 110, 0.95), rgba(20, 28, 52, 0.96) 38%, rgba(10, 14, 24, 0.98)),
         radial-gradient(circle at 20% 18%, rgba(242, 195, 107, 0.55), transparent 22%);
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
       transform: rotate(3deg);
@@ -304,11 +283,7 @@
       pointer-events: none;
     }
 
-    .poster-top,
-    .poster-bottom {
-      position: relative;
-      z-index: 1;
-    }
+    .poster-top, .poster-bottom { position: relative; z-index: 1; }
 
     .poster-tag {
       display: inline-flex;
@@ -354,18 +329,16 @@
     }
 
     .route-step strong {
-      min-width: 52px;
+      min-width: 74px;
       color: #170d12;
       background: linear-gradient(135deg, #fff4e3, #ffd6c8);
       border-radius: 999px;
       padding: 5px 10px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-align: center;
     }
 
-    .section {
-      padding: 18px 0 8px;
-    }
+    .section { padding: 18px 0 8px; }
 
     .section-head {
       display: flex;
@@ -375,21 +348,14 @@
       margin-bottom: 18px;
     }
 
-    .section-title {
-      font-size: clamp(1.4rem, 2.4vw, 2rem);
-    }
-
+    .section-title { font-size: clamp(1.4rem, 2.4vw, 2rem); }
     .section-subtitle {
       margin: 8px 0 0;
       color: var(--muted);
       max-width: 70ch;
     }
 
-    .section-link {
-      color: #ffe6db;
-      font-weight: 800;
-      white-space: nowrap;
-    }
+    .section-link { color: #ffe6db; font-weight: 800; white-space: nowrap; }
 
     .stats-grid {
       display: grid;
@@ -397,12 +363,19 @@
       gap: 16px;
     }
 
+    .stat-card,
+    .spotlight,
+    .tip-card,
+    .faq-card,
+    .day-card {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--panel);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+    }
+
     .stat-card {
       padding: 18px;
       border-radius: var(--radius-lg);
-      background: var(--panel);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
     }
 
     .stat-card .label {
@@ -413,7 +386,7 @@
     }
 
     .stat-card strong {
-      font-size: 1.22rem;
+      font-size: 1.18rem;
       display: block;
       margin-bottom: 6px;
     }
@@ -451,19 +424,13 @@
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
-    .chip:hover {
-      transform: translateY(-2px);
-    }
-
+    .chip:hover { transform: translateY(-2px); }
     .chip.is-active {
       background: linear-gradient(135deg, rgba(255, 122, 110, 0.18), rgba(242, 195, 107, 0.14));
       border-color: rgba(255, 122, 110, 0.42);
     }
 
-    .itinerary-list {
-      display: grid;
-      gap: 14px;
-    }
+    .itinerary-list { display: grid; gap: 14px; }
 
     .day-card {
       display: grid;
@@ -471,9 +438,7 @@
       gap: 16px;
       padding: 18px;
       border-radius: var(--radius-lg);
-      background: var(--panel);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.2);
+      align-items: stretch;
     }
 
     .day-flag {
@@ -539,7 +504,7 @@
     }
 
     .schedule b {
-      min-width: 66px;
+      min-width: 72px;
       color: var(--accent-2);
     }
 
@@ -596,8 +561,6 @@
     .spotlight {
       padding: 18px;
       border-radius: var(--radius-lg);
-      background: var(--panel);
-      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .spotlight .label {
@@ -623,22 +586,60 @@
       color: var(--muted);
     }
 
+    .budget-grid,
     .tips-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
 
-    .tip-card {
+    .budget-card,
+    .tip-card,
+    .faq-card {
       padding: 18px;
       border-radius: var(--radius-lg);
-      background: var(--panel);
-      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .tip-card h3 {
+    .budget-card h3,
+    .tip-card h3,
+    .faq-card h3 {
       margin-bottom: 10px;
       font-size: 1.12rem;
+    }
+
+    .budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .budget-table th,
+    .budget-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: left;
+    }
+
+    .budget-table th {
+      color: #ffe8d8;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .budget-table td {
+      color: var(--muted);
+    }
+
+    .budget-total {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #eef1fb;
     }
 
     .tip-card ul {
@@ -647,8 +648,34 @@
       color: var(--muted);
     }
 
-    .tip-card li + li {
-      margin-top: 6px;
+    .tip-card li + li { margin-top: 6px; }
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    details p {
+      margin: 0;
+      padding: 0 18px 16px;
+      color: var(--muted);
     }
 
     .footer {
@@ -672,9 +699,7 @@
       gap: 14px;
     }
 
-    .footer-links a:hover {
-      color: var(--text);
-    }
+    .footer-links a:hover { color: var(--text); }
 
     .reveal {
       animation: rise 700ms ease both;
@@ -683,21 +708,17 @@
     .delay-1 { animation-delay: 120ms; }
     .delay-2 { animation-delay: 240ms; }
     .delay-3 { animation-delay: 360ms; }
+    .delay-4 { animation-delay: 480ms; }
 
     @keyframes rise {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 1080px) {
       .hero-content,
       .trip-layout,
+      .budget-grid,
       .tips-grid,
       .spotlight-grid {
         grid-template-columns: 1fr;
@@ -707,43 +728,19 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .aside-panel {
-        position: static;
-      }
-
-      .hero-visual {
-        justify-items: start;
-      }
+      .aside-panel { position: static; }
+      .hero-visual { justify-items: start; }
     }
 
     @media (max-width: 760px) {
-      .nav-inner {
-        flex-wrap: wrap;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: space-between;
-        gap: 12px;
-        font-size: 0.88rem;
-      }
-
-      .hero-content,
-      .day-card {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-content {
-        padding: 22px;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding-top: 14px;
-      }
+      .nav-inner { flex-wrap: wrap; }
+      .nav-links { width: 100%; justify-content: space-between; gap: 12px; font-size: 0.88rem; }
+      .hero-content, .day-card { grid-template-columns: 1fr; }
+      .hero-content { padding: 22px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .day-flag { min-height: 132px; }
+      .section { padding-top: 14px; }
+      .footer-inner { align-items: flex-start; }
     }
   </style>
 </head>
@@ -751,18 +748,19 @@
   <div class="page">
     <header class="nav">
       <div class="container nav-inner">
-        <a class="brand" href="#top" aria-label="오사카 교토 고베 7박8일 신혼여행 일정">
+        <a class="brand" href="#top" aria-label="일본 10월 7박 8일 여행 일정">
           <div class="brand-mark">J</div>
           <div>
-            <small>Honeymoon Route</small>
-            <strong>오사카 · 교토 · 고베</strong>
+            <small>Autumn Japan Route</small>
+            <strong>일본 10월 7박 8일</strong>
           </div>
         </a>
         <nav class="nav-links" aria-label="페이지 이동">
           <a href="#overview">개요</a>
           <a href="#itinerary">일정</a>
-          <a href="#highlights">포인트</a>
+          <a href="#budget">예산</a>
           <a href="#tips">팁</a>
+          <a href="#faq">FAQ</a>
         </nav>
         <a class="button button-secondary" href="#itinerary">일정 보기</a>
       </div>
@@ -773,34 +771,35 @@
         <div class="container hero-shell">
           <div class="hero-content">
             <div class="reveal">
-              <span class="eyebrow">7박8일 신혼여행</span>
-              <h1>오사카에서 시작해<br />교토의 여백을 지나<br />고베의 밤으로 마무리</h1>
+              <span class="eyebrow">7박 8일 일본 여행</span>
+              <h1>10월의 선선한 공기와<br />도시 감성을 잇는<br />일본 7박 8일 일정</h1>
               <p class="hero-copy">
-                도심의 즐거움, 전통의 고요함, 항구 도시의 로맨스를 한 번에 담는
-                7박8일 신혼여행 일정입니다. 무리하지 않게 이동하면서도 사진, 식사, 휴식이
-                균형 있게 이어지도록 구성했습니다.
+                도쿄에서 시작해 하코네의 온천, 교토의 가을 골목, 오사카와 고베의 야경까지
+                한 번에 이어지는 일정입니다. 10월 특유의 쾌적한 날씨에 맞춰 이동 부담은 낮추고,
+                사진과 맛집, 산책의 비중은 높였습니다.
               </p>
               <div class="hero-meta" aria-label="여행 요약">
-                <span class="meta-pill">도시 3곳</span>
+                <span class="meta-pill">도쿄 IN / 오사카 OUT</span>
                 <span class="meta-pill">7박 8일</span>
-                <span class="meta-pill">신혼여행 맞춤</span>
+                <span class="meta-pill">10월 추천 코스</span>
               </div>
               <div class="hero-actions">
-                <a class="button button-primary" href="#itinerary">일정 전체 보기</a>
-                <a class="button button-secondary" href="#tips">준비 팁 확인</a>
+                <a class="button button-primary" href="#itinerary">전체 일정 확인</a>
+                <a class="button button-secondary" href="#budget">예산 먼저 보기</a>
               </div>
             </div>
 
             <div class="hero-visual reveal delay-1">
               <div class="poster">
                 <div class="poster-top">
-                  <span class="poster-tag">Romantic Kansai Route</span>
-                  <h2>오사카 - 교토 - 고베</h2>
-                  <p>활기와 고요, 그리고 바다를 이어주는 가장 균형 잡힌 8일 코스.</p>
-                  <div class="route-line" aria-label="도시 이동 순서">
-                    <div class="route-step"><strong>DAY 1-3</strong><span>오사카: 도심 도착, 야경, 미식</span></div>
-                    <div class="route-step"><strong>DAY 4-6</strong><span>교토: 전통, 산책, 여유로운 스테이</span></div>
-                    <div class="route-step"><strong>DAY 7-8</strong><span>고베: 항구 감성, 온천, 피날레</span></div>
+                  <span class="poster-tag">Tokyo - Hakone - Kyoto - Osaka - Kobe</span>
+                  <h2>가을 일본 7박 8일</h2>
+                  <p>도시, 온천, 전통 거리, 야경, 맛집을 균형 있게 담은 실전형 루트.</p>
+                  <div class="route-line" aria-label="여행 경로">
+                    <div class="route-step"><strong>DAY 1-2</strong><span>도쿄 도착, 시부야 / 아사쿠사 / 우에노</span></div>
+                    <div class="route-step"><strong>DAY 3</strong><span>하코네 온천과 후지산 조망</span></div>
+                    <div class="route-step"><strong>DAY 4-5</strong><span>교토 전통 거리와 사찰 산책</span></div>
+                    <div class="route-step"><strong>DAY 6-8</strong><span>오사카, 나라, 고베로 마무리</span></div>
                   </div>
                 </div>
               </div>
@@ -813,35 +812,35 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <h2 class="section-title">일정 개요</h2>
+              <h2 class="section-title">여행 개요</h2>
               <p class="section-subtitle">
-                도시별 분위기를 나눠서 체력 소모를 줄이고, 신혼여행답게 저녁 시간은
-                여유롭게 비워두는 구성이 핵심입니다.
+                10월 일본은 습도가 낮아 걸어 다니기 좋고, 북쪽과 고지대는 단풍 기운이 서서히 올라옵니다.
+                이동 동선은 도쿄, 하코네, 교토, 오사카, 고베 순으로 구성했습니다.
               </p>
             </div>
-            <a class="section-link" href="#tips">숙소와 이동 팁 보기</a>
+            <a class="section-link" href="#tips">준비 팁 보기</a>
           </div>
 
           <div class="stats-grid">
             <article class="stat-card reveal delay-1">
-              <span class="label">추천 동선</span>
-              <strong>오사카 → 교토 → 고베</strong>
-              <p>도착 직후 오사카, 중간은 교토, 마지막은 고베로 마무리합니다.</p>
+              <span class="label">추천 노선</span>
+              <strong>도쿄 → 하코네 → 교토 → 오사카 → 고베</strong>
+              <p>입국은 도쿄, 출국은 간사이로 잡으면 신칸센과 공항 이동이 깔끔합니다.</p>
             </article>
             <article class="stat-card reveal delay-2">
-              <span class="label">숙박 배치</span>
-              <strong>3박 / 3박 / 1박</strong>
-              <p>오사카 3박, 교토 3박, 고베 1박으로 무리 없는 이동을 잡았습니다.</p>
+              <span class="label">체류 균형</span>
+              <strong>도쿄 2박 / 하코네 1박 / 교토 2박 / 오사카 2박</strong>
+              <p>도시와 전통, 휴식이 섞여 있어 첫 일본 여행에도 무리가 적습니다.</p>
             </article>
             <article class="stat-card reveal delay-3">
               <span class="label">여행 분위기</span>
-              <strong>도심 미식 + 전통 산책 + 온천</strong>
-              <p>하루 한 번은 꼭 쉬는 구간을 넣어 사진과 식사를 즐기기 좋게 구성했습니다.</p>
+              <strong>시티 워크 + 온천 + 야경 + 미식</strong>
+              <p>각 도시의 대표 감성만 뽑아 과하지 않게 즐기도록 설계했습니다.</p>
             </article>
             <article class="stat-card reveal delay-4">
-              <span class="label">추천 포인트</span>
-              <strong>야경, 한적한 아침, 저녁 디너</strong>
-              <p>사람이 몰리는 시간대는 피해, 신혼여행의 밀도를 높이는 흐름입니다.</p>
+              <span class="label">10월 포인트</span>
+              <strong>선선한 날씨 / 긴 도보 / 야외 일정</strong>
+              <p>덥지 않아서 걷기 좋고, 저녁에는 가벼운 외투가 있으면 편합니다.</p>
             </article>
           </div>
         </div>
@@ -851,10 +850,10 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <h2 class="section-title">7박8일 상세 일정</h2>
+              <h2 class="section-title">7박 8일 상세 일정</h2>
               <p class="section-subtitle">
-                아래 버튼으로 도시별 일정만 빠르게 볼 수 있습니다. 전체 일정은 그대로 유지되고,
-                보여주는 순서만 바뀝니다.
+                아래 버튼으로 도시별 일정을 빠르게 필터링할 수 있습니다. 일정은 한 번에 한 도시씩
+                강하게 밀기보다, 이동 피로를 줄이는 방향으로 배치했습니다.
               </p>
             </div>
           </div>
@@ -863,59 +862,61 @@
             <div>
               <div class="controls" role="toolbar" aria-label="도시 필터">
                 <button class="chip is-active" type="button" data-filter="all">전체</button>
-                <button class="chip" type="button" data-filter="osaka">오사카</button>
+                <button class="chip" type="button" data-filter="tokyo">도쿄</button>
+                <button class="chip" type="button" data-filter="hakone">하코네</button>
                 <button class="chip" type="button" data-filter="kyoto">교토</button>
+                <button class="chip" type="button" data-filter="osaka">오사카</button>
                 <button class="chip" type="button" data-filter="kobe">고베</button>
               </div>
 
               <div class="itinerary-list" id="itineraryList">
-                <article class="day-card reveal" data-city="osaka">
+                <article class="day-card reveal" data-city="tokyo">
                   <div class="day-flag" style="--flag-from:#ffcb9f;--flag-to:#ff7a6e;">
                     <small>Day 1</small>
                     <strong>도착</strong>
                   </div>
                   <div class="day-body">
-                    <div class="day-kicker">Osaka Start</div>
-                    <h3>오사카 도착, 숙소 체크인, 도심의 첫 저녁</h3>
-                    <p class="day-desc">여행의 첫날은 이동 피로를 줄이고, 가볍게 야경과 맛집만 즐기는 흐름이 좋습니다.</p>
+                    <div class="day-kicker">Tokyo Arrival</div>
+                    <h3>도쿄 도착 후 시부야로 이동, 첫날은 가볍게 적응</h3>
+                    <p class="day-desc">비행 후에는 무리하지 않고 체크인, 근처 산책, 저녁 식사로 컨디션을 조절하는 구성이 좋습니다.</p>
                     <ul class="schedule">
-                      <li><b>오후</b><span>간사이 공항 도착 후 오사카 시내 이동, 숙소 체크인</span></li>
-                      <li><b>저녁</b><span>도톤보리 산책, 글리코사인 주변 야경, 편한 이자카야 디너</span></li>
-                      <li><b>포인트</b><span>첫날은 무리하지 말고, 사진만 가볍게 남기기</span></li>
+                      <li><b>오후</b><span>나리타 또는 하네다 도착, 숙소 체크인</span></li>
+                      <li><b>저녁</b><span>시부야 스크램블, 하라주쿠 주변 산책, 라멘 또는 이자카야</span></li>
+                      <li><b>포인트</b><span>첫날은 쇼핑보다 휴식 우선, 현지 SIM과 교통카드만 준비</span></li>
                     </ul>
                   </div>
                 </article>
 
-                <article class="day-card reveal" data-city="osaka">
+                <article class="day-card reveal" data-city="tokyo">
                   <div class="day-flag" style="--flag-from:#ffd58a;--flag-to:#ffa66f;">
                     <small>Day 2</small>
-                    <strong>미식</strong>
+                    <strong>도쿄</strong>
                   </div>
                   <div class="day-body">
-                    <div class="day-kicker">Osaka Taste</div>
-                    <h3>오사카 성과 미식 투어, 낮에는 산책하고 밤에는 먹고</h3>
-                    <p class="day-desc">오사카의 에너지와 신혼여행의 즐거움을 가장 잘 느낄 수 있는 날입니다.</p>
+                    <div class="day-kicker">Tokyo Classic</div>
+                    <h3>아사쿠사, 우에노, 아키하바라로 도쿄의 표정 확인</h3>
+                    <p class="day-desc">전통과 현대를 모두 담을 수 있도록 동선을 나눴습니다. 걷기 좋은 10월과 잘 맞는 일정입니다.</p>
                     <ul class="schedule">
-                      <li><b>오전</b><span>오사카 성 공원 산책, 성 주변 사진 촬영</span></li>
-                      <li><b>점심</b><span>구로몬 시장 또는 난바 근처에서 타코야키, 오코노미야키</span></li>
-                      <li><b>밤</b><span>우메다 스카이 빌딩 전망대 또는 리버 크루즈로 야경 마무리</span></li>
+                      <li><b>오전</b><span>아사쿠사 센소지, 나카미세 거리, 전통 간식</span></li>
+                      <li><b>오후</b><span>우에노 공원 또는 박물관, 아키하바라 쇼핑</span></li>
+                      <li><b>저녁</b><span>도쿄역 야경, 긴자 또는 신주쿠에서 식사</span></li>
                     </ul>
                   </div>
                 </article>
 
-                <article class="day-card reveal" data-city="osaka">
+                <article class="day-card reveal" data-city="hakone">
                   <div class="day-flag" style="--flag-from:#b7d4ff;--flag-to:#8aa6ff;">
                     <small>Day 3</small>
-                    <strong>여유</strong>
+                    <strong>온천</strong>
                   </div>
                   <div class="day-body">
-                    <div class="day-kicker">Osaka Slow Day</div>
-                    <h3>유니버셜 스튜디오 또는 하루 휴식형 일정</h3>
-                    <p class="day-desc">관광 강도를 낮추고 취향에 맞춰 선택하는 날입니다. 체력 보존용으로도 좋습니다.</p>
+                    <div class="day-kicker">Hakone Reset</div>
+                    <h3>하코네 이동, 온천과 후지산 조망으로 속도 낮추기</h3>
+                    <p class="day-desc">도시의 밀도를 잠시 벗어나 온천과 호수 풍경으로 리듬을 바꾸는 날입니다.</p>
                     <ul class="schedule">
-                      <li><b>선택 1</b><span>유니버설 스튜디오 재팬에서 하루를 통째로 즐기기</span></li>
-                      <li><b>선택 2</b><span>쇼핑, 카페, 대형 백화점, 스파로 느긋하게 보내기</span></li>
-                      <li><b>저녁</b><span>오사카 스테이크 또는 야키니쿠로 특별한 저녁 식사</span></li>
+                      <li><b>오전</b><span>도쿄 출발, 오다와라 경유 후 하코네 이동</span></li>
+                      <li><b>오후</b><span>하코네 유모토, 오와쿠다니 또는 아시노코 유람</span></li>
+                      <li><b>저녁</b><span>료칸 체크인, 가이세키 또는 정갈한 온천 식사</span></li>
                     </ul>
                   </div>
                 </article>
@@ -923,16 +924,16 @@
                 <article class="day-card reveal" data-city="kyoto">
                   <div class="day-flag" style="--flag-from:#ffe3bf;--flag-to:#f2c36b;">
                     <small>Day 4</small>
-                    <strong>이동</strong>
+                    <strong>교토</strong>
                   </div>
                   <div class="day-body">
                     <div class="day-kicker">Kyoto Arrival</div>
-                    <h3>교토로 이동, 기온과 히가시야마의 첫 산책</h3>
-                    <p class="day-desc">오사카의 리듬에서 벗어나, 교토의 정적인 분위기에 천천히 들어가는 날입니다.</p>
+                    <h3>교토로 이동, 기온과 히가시야마의 고즈넉한 첫인상</h3>
+                    <p class="day-desc">하코네에서 신칸센으로 넘어오면 교토의 정적인 분위기가 더 선명하게 느껴집니다.</p>
                     <ul class="schedule">
-                      <li><b>오전</b><span>오사카에서 교토 이동, 숙소 체크인</span></li>
-                      <li><b>오후</b><span>기온, 산넨자카, 니넨자카, 카페와 찻집 산책</span></li>
-                      <li><b>저녁</b><span>야사카 신사 근처에서 가벼운 디너와 야간 산책</span></li>
+                      <li><b>오전</b><span>교토 도착 후 숙소 체크인, 점심은 유도후 또는 오반자이</span></li>
+                      <li><b>오후</b><span>기온, 야사카 신사, 니넨자카·산넨자카 산책</span></li>
+                      <li><b>저녁</b><span>기온 골목의 조용한 식당 또는 카페에서 마무리</span></li>
                     </ul>
                   </div>
                 </article>
@@ -943,47 +944,47 @@
                     <strong>전통</strong>
                   </div>
                   <div class="day-body">
-                    <div class="day-kicker">Kyoto Classic</div>
-                    <h3>청수사와 아라시야마, 교토의 대표 풍경 하루에 담기</h3>
-                    <p class="day-desc">신혼여행 사진이 가장 잘 나오는 날입니다. 아침 일찍 출발하는 것이 핵심입니다.</p>
+                    <div class="day-kicker">Kyoto Highlights</div>
+                    <h3>후시미 이나리와 아라시야마, 교토의 대표 풍경 압축</h3>
+                    <p class="day-desc">이날은 사진과 걷기 비중이 높습니다. 오전 일찍 움직이면 인파를 많이 피할 수 있습니다.</p>
                     <ul class="schedule">
-                      <li><b>오전</b><span>청수사(기요미즈데라)와 오토와 폭포, 사랑의 돌로 시작</span></li>
-                      <li><b>오후</b><span>아라시야마 대나무숲, 도게츠교, 강가 산책</span></li>
-                      <li><b>밤</b><span>가이세키 또는 교토 스타일 디너 후 숙소에서 휴식</span></li>
+                      <li><b>오전</b><span>후시미 이나리, 붉은 도리이 산책</span></li>
+                      <li><b>오후</b><span>아라시야마 대나무 숲, 도게츠교, 강변 카페</span></li>
+                      <li><b>저녁</b><span>가와라마치 또는 폰토초에서 가벼운 이자카야</span></li>
                     </ul>
                   </div>
                 </article>
 
-                <article class="day-card reveal" data-city="kyoto">
+                <article class="day-card reveal" data-city="osaka">
                   <div class="day-flag" style="--flag-from:#d6f1e7;--flag-to:#8bd6c3;">
                     <small>Day 6</small>
-                    <strong>느림</strong>
+                    <strong>오사카</strong>
                   </div>
                   <div class="day-body">
-                    <div class="day-kicker">Kyoto Slow Luxury</div>
-                    <h3>후시미 이나리 새벽 산책과 느긋한 티타임</h3>
-                    <p class="day-desc">붐비는 관광지와 조금 떨어져, 아침과 오후의 결을 다르게 즐기는 날입니다.</p>
+                    <div class="day-kicker">Osaka Taste</div>
+                    <h3>오사카 이동, 도톤보리와 우메다로 도시 에너지 즐기기</h3>
+                    <p class="day-desc">교토와 대비되는 활기찬 분위기를 넣어 여행의 온도를 다시 올립니다.</p>
                     <ul class="schedule">
-                      <li><b>이른 아침</b><span>후시미 이나리 신사에서 조용한 시간대의 산책</span></li>
-                      <li><b>점심</b><span>니시키 시장 또는 마치야 카페에서 미식 산책</span></li>
-                      <li><b>저녁</b><span>온천이 있는 숙소 또는 료칸 스타일 휴식</span></li>
+                      <li><b>오전</b><span>오사카 이동, 호텔 체크인 후 점심</span></li>
+                      <li><b>오후</b><span>우메다 스카이 빌딩 또는 난바 쇼핑, 카페 휴식</span></li>
+                      <li><b>저녁</b><span>도톤보리 산책, 타코야키, 오코노미야키, 글리코 사인</span></li>
                     </ul>
                   </div>
                 </article>
 
-                <article class="day-card reveal" data-city="kobe">
+                <article class="day-card reveal" data-city="osaka">
                   <div class="day-flag" style="--flag-from:#d7e0ff;--flag-to:#8aa6ff;">
                     <small>Day 7</small>
-                    <strong>항구</strong>
+                    <strong>나라</strong>
                   </div>
                   <div class="day-body">
-                    <div class="day-kicker">Kobe Harbor Day</div>
-                    <h3>고베 이동, 항구와 야경, 분위기 있는 디너</h3>
-                    <p class="day-desc">신혼여행의 마지막 도시답게 시원한 항구 풍경과 로맨틱한 밤을 중심으로 잡았습니다.</p>
+                    <div class="day-kicker">Nara & Osaka</div>
+                    <h3>나라 당일치기 후 오사카에서 밤 풍경 마무리</h3>
+                    <p class="day-desc">사슴공원과 사찰을 느긋하게 보고, 저녁에는 오사카로 돌아와 마지막 밤을 즐깁니다.</p>
                     <ul class="schedule">
-                      <li><b>오전</b><span>교토에서 고베 이동, 숙소 체크인 후 여유롭게 시작</span></li>
-                      <li><b>오후</b><span>하버랜드, 메리켄 파크, 기타노 이진칸 산책</span></li>
-                      <li><b>저녁</b><span>고베 규 스테이크 또는 항구 뷰 레스토랑 디너</span></li>
+                      <li><b>오전</b><span>나라 공원, 도다이지, 사슴공원 산책</span></li>
+                      <li><b>오후</b><span>오사카 복귀 후 신사이바시 쇼핑 또는 카페</span></li>
+                      <li><b>저녁</b><span>쿠로몬 시장, 야키니쿠, 강변 야경 산책</span></li>
                     </ul>
                   </div>
                 </article>
@@ -991,16 +992,16 @@
                 <article class="day-card reveal" data-city="kobe">
                   <div class="day-flag" style="--flag-from:#ffd8c2;--flag-to:#ffb37f;">
                     <small>Day 8</small>
-                    <strong>귀국</strong>
+                    <strong>출국</strong>
                   </div>
                   <div class="day-body">
                     <div class="day-kicker">Kobe Finale</div>
-                    <h3>아리마 온천 또는 브런치 후 귀국 준비</h3>
-                    <p class="day-desc">마지막 날은 휴식과 마무리에 집중합니다. 몸을 풀고, 느긋하게 공항으로 이동합니다.</p>
+                    <h3>고베로 짧게 이동해 바닷가 감성으로 여행 마무리</h3>
+                    <p class="day-desc">출국 전 반나절 코스로 넣기 좋은 일정입니다. 여유가 없다면 공항 이동으로 바로 바꿔도 됩니다.</p>
                     <ul class="schedule">
-                      <li><b>오전</b><span>아리마 온천으로 짧은 힐링 또는 고베 시내 브런치</span></li>
-                      <li><b>오후</b><span>기념품 쇼핑, 짐 정리, 공항 이동</span></li>
-                      <li><b>마무리</b><span>여행 사진 정리와 다음 여행 계획까지 여운 남기기</span></li>
+                      <li><b>오전</b><span>고베 하버랜드 또는 기타노이진칸 산책</span></li>
+                      <li><b>오후</b><span>쇼핑, 점심, 공항 이동</span></li>
+                      <li><b>마무리</b><span>여행 사진 정리와 다음 일정 계획까지 깔끔하게 정리</span></li>
                     </ul>
                   </div>
                 </article>
@@ -1008,24 +1009,24 @@
             </div>
 
             <aside class="aside-panel reveal delay-1">
-              <h3>추천 숙박 배치</h3>
-              <p>동선을 최소화하려면 숙소는 도시별로 나누는 편이 좋습니다.</p>
+              <h3>이동 요약</h3>
+              <p>10월은 걷기 좋은 날씨라 도심 산책과 전철 이동을 같이 섞기 좋습니다.</p>
               <div class="info-list">
                 <div class="info-item">
-                  <span>오사카 1~3일차</span>
-                  <strong>난바 또는 우메다</strong>
+                  <span>도쿄 1~2일차</span>
+                  <strong>첫 적응과 도시 감성 확보</strong>
                 </div>
                 <div class="info-item">
-                  <span>교토 4~6일차</span>
-                  <strong>기온, 히가시야마, 교토역 인근</strong>
+                  <span>하코네 3일차</span>
+                  <strong>온천으로 중간 휴식</strong>
                 </div>
                 <div class="info-item">
-                  <span>고베 7일차</span>
-                  <strong>산노미야 또는 하버랜드</strong>
+                  <span>교토 4~5일차</span>
+                  <strong>전통 거리와 사찰 집중</strong>
                 </div>
                 <div class="info-item">
-                  <span>이동 원칙</span>
-                  <strong>낮에는 관광, 밤에는 숙소 복귀</strong>
+                  <span>오사카·고베 6~8일차</span>
+                  <strong>미식, 야경, 출국 동선 정리</strong>
                 </div>
               </div>
             </aside>
@@ -1033,33 +1034,56 @@
         </div>
       </section>
 
-      <section class="section" id="highlights">
+      <section class="section" id="budget">
         <div class="container">
           <div class="section-head">
             <div>
-              <h2 class="section-title">도시별 하이라이트</h2>
+              <h2 class="section-title">예산 가이드</h2>
               <p class="section-subtitle">
-                각 도시는 성격이 분명합니다. 오사카는 맛과 야경, 교토는 전통과 산책,
-                고베는 항구와 온천이 핵심입니다.
+                숙소 등급과 항공권 시점에 따라 달라지지만, 10월 일본 7박 8일 기준으로는 아래 정도를
+                기준점으로 잡으면 계획하기 쉽습니다.
               </p>
             </div>
           </div>
 
-          <div class="spotlight-grid">
-            <article class="spotlight reveal delay-1">
-              <div class="label">Osaka</div>
-              <h3>맛집과 야경을 책임지는 시작 도시</h3>
-              <p>도톤보리, 오사카 성, 우메다 야경을 중심으로 여행의 텐션을 끌어올리기 좋습니다.</p>
+          <div class="budget-grid">
+            <article class="budget-card reveal delay-1">
+              <h3>1인 예상 지출</h3>
+              <table class="budget-table">
+                <thead>
+                  <tr>
+                    <th>항목</th>
+                    <th>예상</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>항공권</td><td>왕복 35만 ~ 80만 원</td></tr>
+                  <tr><td>숙소</td><td>7박 70만 ~ 180만 원</td></tr>
+                  <tr><td>교통</td><td>15만 ~ 35만 원</td></tr>
+                  <tr><td>식비 / 카페</td><td>20만 ~ 40만 원</td></tr>
+                  <tr><td>입장료 / 기타</td><td>5만 ~ 15만 원</td></tr>
+                </tbody>
+              </table>
+              <div class="budget-total">총합 기준: 약 145만 ~ 350만 원 선</div>
             </article>
-            <article class="spotlight reveal delay-2">
-              <div class="label">Kyoto</div>
-              <h3>느린 아침과 사진이 남는 풍경</h3>
-              <p>청수사, 기온, 아라시야마, 후시미 이나리처럼 아침 산책이 특히 잘 어울리는 도시입니다.</p>
-            </article>
-            <article class="spotlight reveal delay-3">
-              <div class="label">Kobe</div>
-              <h3>피날레에 어울리는 항구 도시</h3>
-              <p>고베 하버랜드와 아리마 온천을 붙이면, 신혼여행의 마지막 장면이 훨씬 부드럽게 마무리됩니다.</p>
+
+            <article class="budget-card reveal delay-2">
+              <h3>절약 팁</h3>
+              <table class="budget-table">
+                <thead>
+                  <tr>
+                    <th>항목</th>
+                    <th>절약 방식</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>숙소</td><td>역 도보 10분 내 비즈니스 호텔</td></tr>
+                  <tr><td>교통</td><td>도시별 IC카드 + 구간별 신칸센 비교</td></tr>
+                  <tr><td>식사</td><td>점심은 정식, 저녁은 한 번만 고급 식사</td></tr>
+                  <tr><td>일정</td><td>고가 입장권보다 산책형 코스 비중 확대</td></tr>
+                </tbody>
+              </table>
+              <div class="budget-total">핵심은 숙소 위치와 이동 횟수를 줄이는 것입니다.</div>
             </article>
           </div>
         </div>
@@ -1069,9 +1093,9 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <h2 class="section-title">준비 팁</h2>
+              <h2 class="section-title">꼭 알아야 할 여행 팁</h2>
               <p class="section-subtitle">
-                실제로 여행 만족도를 크게 좌우하는 건 이동의 여유와 예약 타이밍입니다.
+                10월 일본 여행에서 체감 만족도를 크게 올려주는 준비 포인트만 추렸습니다.
               </p>
             </div>
           </div>
@@ -1080,19 +1104,47 @@
             <article class="tip-card reveal delay-1">
               <h3>이동 팁</h3>
               <ul>
-                <li>오사카와 교토 사이 이동은 가볍게, 체크아웃 이후 체크인 전 공백을 줄이세요.</li>
-                <li>교토는 아침 일찍 시작하면 혼잡을 피하고 사진도 훨씬 좋습니다.</li>
-                <li>고베는 마지막 도시로 배치하면 공항 이동 전까지 여유가 생깁니다.</li>
+                <li>도쿄와 간사이 모두 IC카드를 쓰면 소액 결제가 편합니다.</li>
+                <li>신칸센은 시간대에 따라 차이가 크니 미리 시간표를 확인하세요.</li>
+                <li>교토는 버스보다 지하철과 도보를 섞는 편이 스트레스가 적습니다.</li>
               </ul>
             </article>
             <article class="tip-card reveal delay-2">
-              <h3>예약 팁</h3>
+              <h3>복장 팁</h3>
               <ul>
-                <li>가이세키, 스테이크, 온천 숙소는 미리 예약하는 편이 안전합니다.</li>
-                <li>신혼여행 사진을 원하면 야경 레스토랑과 전망대는 시간대를 고정해 두세요.</li>
-                <li>하루 한 번은 일정이 비는 구간을 남겨두면 체감 피로가 크게 줄어듭니다.</li>
+                <li>낮에는 가볍고 밤에는 얇은 외투를 입을 수 있게 준비하는 것이 좋습니다.</li>
+                <li>걷는 시간이 많으므로 쿠션 좋은 운동화를 추천합니다.</li>
+                <li>비 소식이 있으면 접이식 우산과 방수 파우치를 챙기면 편합니다.</li>
               </ul>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">자주 묻는 질문</h2>
+              <p class="section-subtitle">
+                일정 선택 전에 많이 궁금해하는 내용을 간단히 정리했습니다.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-list">
+            <details class="faq-card reveal delay-1" open>
+              <summary>10월 일본 여행은 어디가 가장 좋나요?</summary>
+              <p>이 페이지처럼 도쿄, 하코네, 교토, 오사카를 잇는 구성이 무난합니다. 초가을 감성과 도시 여행을 동시에 담기 좋습니다.</p>
+            </details>
+            <details class="faq-card reveal delay-2">
+              <summary>7박 8일에 이 동선이 너무 빡빡하지 않나요?</summary>
+              <p>하코네를 하루 넣어 중간에 속도를 낮췄기 때문에 비교적 균형이 맞습니다. 쇼핑 비중을 줄이면 더 여유롭게 다닐 수 있습니다.</p>
+            </details>
+            <details class="faq-card reveal delay-3">
+              <summary>오사카에서 바로 출국해도 괜찮나요?</summary>
+              <p>괜찮습니다. 간사이 공항 출국을 기준으로 마지막 날을 고베나 오사카에서 마무리하면 동선이 깔끔합니다.</p>
+            </details>
           </div>
         </div>
       </section>
@@ -1101,13 +1153,14 @@
     <footer class="footer">
       <div class="container footer-inner">
         <div>
-          <strong style="color: var(--text);">오사카 · 교토 · 고베 7박8일 신혼여행</strong>
-          <div>도심의 활기, 전통의 여백, 항구의 낭만을 한 페이지에 담은 일정 소개</div>
+          <strong style="color: var(--text);">일본 10월 7박 8일 여행 일정</strong>
+          <div>도쿄, 하코네, 교토, 오사카, 고베를 한 번에 연결한 실전형 루트입니다.</div>
         </div>
         <div class="footer-links">
           <a href="#overview">개요</a>
           <a href="#itinerary">일정</a>
-          <a href="#highlights">포인트</a>
+          <a href="#budget">예산</a>
+          <a href="#tips">팁</a>
         </div>
       </div>
     </footer>
