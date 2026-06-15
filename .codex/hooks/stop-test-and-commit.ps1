@@ -149,3 +149,4 @@ $hashResult = Invoke-Git -Arguments @('rev-parse', 'HEAD')
 Write-HookLog ("git rev-parse HEAD exit={0} output=`"{1}`"" -f $hashResult.ExitCode, $hashResult.Output)
 
 Emit-Json @{ continue = $true }
+exit 0
