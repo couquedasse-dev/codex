@@ -7,14 +7,15 @@
   <style>
     :root {
       --bg: #070b14;
-      --bg-soft: #0d1423;
-      --panel: rgba(13, 20, 35, 0.76);
+      --bg-soft: #0c1322;
+      --panel: rgba(13, 20, 35, 0.82);
       --panel-strong: rgba(18, 28, 47, 0.94);
       --border: rgba(255, 255, 255, 0.08);
       --text: #eef2ff;
       --muted: #a9b2c7;
       --accent: #ff5a6a;
       --accent-2: #f7c873;
+      --accent-3: #6ce5c2;
       --success: #68d391;
       --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
       --radius-xl: 30px;
@@ -24,7 +25,9 @@
       --container: 1180px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     html {
       scroll-behavior: smooth;
@@ -36,9 +39,10 @@
       background:
         radial-gradient(circle at top left, rgba(255, 90, 106, 0.16), transparent 34%),
         radial-gradient(circle at top right, rgba(247, 200, 115, 0.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(108, 229, 194, 0.12), transparent 24%),
         linear-gradient(180deg, #05070d 0%, #0a1020 48%, #070b14 100%);
       color: var(--text);
-      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      font-family: "Segoe UI", "Noto Sans KR", Arial, sans-serif;
       line-height: 1.5;
       overflow-x: hidden;
     }
@@ -49,16 +53,21 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
       background-size: 72px 72px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.28), transparent 85%);
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.28), transparent 85%);
       opacity: 0.35;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
     }
 
     .page {
@@ -77,7 +86,7 @@
       z-index: 20;
       backdrop-filter: blur(20px);
       background: rgba(6, 10, 19, 0.72);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .nav-inner {
@@ -103,8 +112,7 @@
       border-radius: 14px;
       display: grid;
       place-items: center;
-      background:
-        linear-gradient(135deg, rgba(255,90,106,0.95), rgba(247,200,115,0.92));
+      background: linear-gradient(135deg, rgba(255, 90, 106, 0.95), rgba(247, 200, 115, 0.92));
       box-shadow: 0 12px 30px rgba(255, 90, 106, 0.25);
       color: #120a10;
       font-size: 1.1rem;
@@ -171,9 +179,9 @@
       padding: 12px 16px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
+      background: rgba(255, 255, 255, 0.03);
       color: var(--muted);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
     .search-pill svg {
@@ -214,8 +222,8 @@
 
     .button-secondary {
       color: var(--text);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .hero {
@@ -227,10 +235,10 @@
       overflow: hidden;
       border-radius: var(--radius-xl);
       background:
-        linear-gradient(135deg, rgba(10,16,30,0.92), rgba(14,24,44,0.78)),
-        radial-gradient(circle at top right, rgba(255,90,106,0.24), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(247,200,115,0.14), transparent 32%);
-      border: 1px solid rgba(255,255,255,0.07);
+        linear-gradient(135deg, rgba(10, 16, 30, 0.92), rgba(14, 24, 44, 0.78)),
+        radial-gradient(circle at top right, rgba(255, 90, 106, 0.24), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(247, 200, 115, 0.14), transparent 32%);
+      border: 1px solid rgba(255, 255, 255, 0.07);
       box-shadow: var(--shadow);
     }
 
@@ -238,7 +246,7 @@
       content: "";
       position: absolute;
       inset: -2px;
-      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+      background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
       opacity: 0.35;
       transform: translateX(-30%);
       animation: sheen 8s ease-in-out infinite;
@@ -261,13 +269,13 @@
       gap: 8px;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       color: #ffd9df;
       font-size: 0.84rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     h1 {
@@ -299,8 +307,8 @@
       gap: 8px;
       padding: 10px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .hero-actions {
@@ -338,10 +346,10 @@
       border-radius: 28px;
       overflow: hidden;
       background:
-        linear-gradient(160deg, rgba(255,90,106,0.95), rgba(24,31,52,0.92) 38%, rgba(10,14,24,0.98)),
-        radial-gradient(circle at 20% 20%, rgba(247,200,115,0.55), transparent 22%),
-        radial-gradient(circle at 80% 75%, rgba(255,255,255,0.22), transparent 24%);
-      border: 1px solid rgba(255,255,255,0.08);
+        linear-gradient(160deg, rgba(255, 90, 106, 0.95), rgba(24, 31, 52, 0.92) 38%, rgba(10, 14, 24, 0.98)),
+        radial-gradient(circle at 20% 20%, rgba(247, 200, 115, 0.55), transparent 22%),
+        radial-gradient(circle at 80% 75%, rgba(255, 255, 255, 0.22), transparent 24%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 36px 80px rgba(0, 0, 0, 0.45);
       transform: rotate(3deg);
     }
@@ -361,12 +369,12 @@
       left: 18px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(0,0,0,0.42);
+      background: rgba(0, 0, 0, 0.42);
       color: #fff;
       font-weight: 700;
       font-size: 0.82rem;
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .poster-info {
@@ -386,7 +394,7 @@
 
     .poster-info p {
       margin: 0 0 12px;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255, 255, 255, 0.78);
       font-size: 0.92rem;
     }
 
@@ -399,18 +407,18 @@
     .tag {
       padding: 7px 11px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 0.8rem;
-      color: rgba(255,255,255,0.92);
+      color: rgba(255, 255, 255, 0.92);
     }
 
     .hero-mini {
       width: min(100%, 360px);
       padding: 18px;
       border-radius: 22px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
       color: var(--muted);
       backdrop-filter: blur(14px);
     }
@@ -428,7 +436,7 @@
       gap: 14px;
       margin-top: 10px;
       padding-top: 10px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .section {
@@ -471,7 +479,7 @@
       position: relative;
       overflow: hidden;
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       background: var(--panel);
       box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
       transition:
@@ -485,13 +493,13 @@
     .movie-card:hover {
       transform: translateY(-10px) scale(1.01);
       box-shadow: 0 28px 64px rgba(0, 0, 0, 0.38);
-      border-color: rgba(255,255,255,0.18);
+      border-color: rgba(255, 255, 255, 0.18);
     }
 
     .movie-card .art {
       aspect-ratio: 16 / 11;
       background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.24), transparent 18%),
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.24), transparent 18%),
         linear-gradient(135deg, var(--from), var(--to));
       position: relative;
     }
@@ -501,8 +509,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 70% 22%, rgba(255,255,255,0.14), transparent 18%),
-        radial-gradient(circle at 18% 78%, rgba(0,0,0,0.24), transparent 20%);
+        radial-gradient(circle at 70% 22%, rgba(255, 255, 255, 0.14), transparent 18%),
+        radial-gradient(circle at 18% 78%, rgba(0, 0, 0, 0.24), transparent 20%);
       mix-blend-mode: screen;
       opacity: 0.82;
     }
@@ -547,8 +555,8 @@
 
     .chip {
       appearance: none;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
       color: var(--text);
       border-radius: 999px;
       padding: 11px 16px;
@@ -559,12 +567,12 @@
 
     .chip:hover {
       transform: translateY(-2px);
-      border-color: rgba(255,255,255,0.16);
+      border-color: rgba(255, 255, 255, 0.16);
     }
 
     .chip.is-active {
-      background: linear-gradient(135deg, rgba(255,90,106,0.22), rgba(247,200,115,0.18));
-      border-color: rgba(255,90,106,0.42);
+      background: linear-gradient(135deg, rgba(255, 90, 106, 0.22), rgba(247, 200, 115, 0.18));
+      border-color: rgba(255, 90, 106, 0.42);
       box-shadow: 0 14px 34px rgba(255, 90, 106, 0.12);
     }
 
@@ -581,7 +589,7 @@
       padding: 22px;
       border-radius: var(--radius-lg);
       background: linear-gradient(180deg, rgba(19, 27, 46, 0.95), rgba(10, 14, 24, 0.96));
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: var(--shadow);
     }
 
@@ -607,8 +615,8 @@
       gap: 12px;
       padding: 12px;
       border-radius: 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .recommend-item .mini-art {
@@ -637,9 +645,9 @@
       padding: 22px;
       border-radius: var(--radius-xl);
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03)),
-        rgba(13,20,35,0.86);
-      border: 1px solid rgba(255,255,255,0.08);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03)),
+        rgba(13, 20, 35, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: var(--shadow);
     }
 
@@ -651,8 +659,8 @@
       flex-direction: column;
       justify-content: space-between;
       background:
-        radial-gradient(circle at 28% 20%, rgba(255,255,255,0.15), transparent 20%),
-        linear-gradient(150deg, rgba(255,90,106,0.95), rgba(30,37,58,0.96) 42%, rgba(10,14,24,1));
+        radial-gradient(circle at 28% 20%, rgba(255, 255, 255, 0.15), transparent 20%),
+        linear-gradient(150deg, rgba(255, 90, 106, 0.95), rgba(30, 37, 58, 0.96) 42%, rgba(10, 14, 24, 1));
     }
 
     .today-spotlight h3 {
@@ -663,7 +671,7 @@
     }
 
     .today-spotlight p {
-      color: rgba(255,255,255,0.82);
+      color: rgba(255, 255, 255, 0.82);
       max-width: 46ch;
     }
 
@@ -683,8 +691,8 @@
     .stat {
       padding: 16px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .stat span {
@@ -699,10 +707,28 @@
       letter-spacing: -0.02em;
     }
 
+    .detail-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(16, 22, 38, 0.96), rgba(11, 16, 27, 0.98));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 18px;
+    }
+
+    .detail-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.02rem;
+    }
+
+    .detail-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
     footer {
       margin-top: 34px;
       padding: 28px 0 36px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       color: var(--muted);
     }
 
@@ -731,6 +757,7 @@
     .delay-1 { animation-delay: 120ms; }
     .delay-2 { animation-delay: 240ms; }
     .delay-3 { animation-delay: 360ms; }
+    .delay-4 { animation-delay: 480ms; }
 
     @keyframes rise {
       from {
@@ -744,8 +771,13 @@
     }
 
     @keyframes sheen {
-      0%, 100% { transform: translateX(-32%); }
-      50% { transform: translateX(20%); }
+      0%,
+      100% {
+        transform: translateX(-32%);
+      }
+      50% {
+        transform: translateX(20%);
+      }
     }
 
     @media (max-width: 1080px) {
@@ -814,7 +846,7 @@
   <div class="page">
     <header class="nav">
       <div class="container nav-inner">
-        <a class="brand" href="#top" aria-label="ReelPulse 홈">
+        <a class="brand" href="#top" aria-label="ReelPulse 홈으로 이동">
           <div class="brand-mark">R</div>
           <div>
             <small>Movie Reco</small>
@@ -834,9 +866,9 @@
               <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="1.8"/>
               <path d="M16.2 16.2 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
-            <span>영화, 감독, 장르를 검색하세요</span>
+            <span>영화, 감독, 장르를 검색해보세요</span>
           </div>
-          <button class="button button-primary">시작하기</button>
+          <button class="button button-primary" type="button">시작하기</button>
         </div>
       </div>
     </header>
@@ -847,20 +879,19 @@
           <div class="hero-content">
             <div>
               <div class="eyebrow">오늘 가장 많이 본 작품</div>
-              <h1>당신의 취향에 맞는<br />영화를 한 번에 찾는 곳</h1>
+              <h1>취향에 맞는<br />영화를 바로 찾는 공간</h1>
               <p class="hero-copy">
-                ReelPulse는 흩어져 있는 인기작과 장르별 후보를 한 화면에 정리해
-                빠르게 고를 수 있도록 설계된 영화 추천 플랫폼 메인 페이지입니다.
-                감성적인 비주얼, 상세한 설명, 즉시 클릭 가능한 카드 구조로 탐색 경험을 강화했습니다.
+                ReelPulse는 영화 추천, 장르 탐색, 오늘의 픽을 한 화면에 정리한 메인 페이지입니다.
+                실제 영화 데이터를 바탕으로 카드와 추천 흐름을 구성해, 처음 들어와도 바로 둘러볼 수 있게 설계했습니다.
               </p>
-              <div class="hero-meta" aria-label="추천 메타 정보">
-                <span>★ 4.8 평균 평점</span>
-                <span>68만+ 회원 추천</span>
-                <span>매주 업데이트</span>
+              <div class="hero-meta" aria-label="추천 서비스 핵심 정보">
+                <span>평점 4.8 / 5.0</span>
+                <span>68만 명이 선택</span>
+                <span>매일 업데이트</span>
               </div>
               <div class="hero-actions">
-                <button class="button button-primary">오늘의 추천 보기</button>
-                <button class="button button-secondary">장르별로 탐색</button>
+                <button class="button button-primary" type="button">오늘의 추천 보기</button>
+                <button class="button button-secondary" type="button">장르별로 탐색</button>
               </div>
               <div class="hero-trust">
                 <div>
@@ -884,8 +915,8 @@
                 <div class="poster-info">
                   <h2>Midnight Signal</h2>
                   <p>
-                    감정의 파동을 따라가는 SF 스릴러. 어두운 도시와 선명한 색채 대비가
-                    돋보이는, 오늘의 대표 추천작입니다.
+                    긴장감과 감정의 밀도가 함께 올라가는 SF 스릴러.
+                    밤에 보기 좋은 분위기와 시각적 임팩트가 강한 추천작입니다.
                   </p>
                   <div class="poster-tags">
                     <span class="tag">SF</span>
@@ -895,10 +926,10 @@
                 </div>
               </div>
               <div class="hero-mini">
-                <strong>지금 인기</strong>
-                관람 시간, 분위기, 장르 조합을 기준으로 작품을 빠르게 비교할 수 있습니다.
+                <strong>지금 보고 있는 흐름</strong>
+                평점, 분위기, 러닝타임, 장르 조합을 기준으로 콘텐츠를 빠르게 비교할 수 있도록 배치했습니다.
                 <div class="mini-row">
-                  <span>러닝타임 128분</span>
+                  <span>예상 러닝타임 128분</span>
                   <span>HD · 4K 지원</span>
                 </div>
               </div>
@@ -912,7 +943,9 @@
           <div class="section-head">
             <div>
               <h2 class="section-title">인기 영화 카드 섹션</h2>
-              <p class="section-subtitle">최근 반응이 좋았던 작품을 영화 포스터 카드 형식으로 정리했습니다. 카드 hover 시 깊이감이 살아납니다.</p>
+              <p class="section-subtitle">
+                반응이 좋았던 작품을 시각적으로 정리했습니다. 카드 hover 시 깊이감이 살아나도록 만들었습니다.
+              </p>
             </div>
             <a class="section-link" href="#today">전체 목록 보기</a>
           </div>
@@ -922,9 +955,9 @@
               <div class="art"></div>
               <div class="content">
                 <h3>Red Horizon</h3>
-                <p>감각적인 액션 연출과 차가운 색조의 도시 미장센이 돋보이는 대형 스케일 블록버스터.</p>
+                <p>거대한 스케일의 액션과 붉은색 톤의 비주얼이 강렬한 블록버스터. 속도감 있는 전개가 매력입니다.</p>
                 <div class="card-meta">
-                  <span>액션 · 드라마</span>
+                  <span>액션 · 스릴러</span>
                   <span class="score">4.9</span>
                 </div>
               </div>
@@ -934,9 +967,9 @@
               <div class="art"></div>
               <div class="content">
                 <h3>Blue Velvet City</h3>
-                <p>도시의 밤을 배경으로 한 감성 누아르. 조용하지만 강렬한 서사와 완성도 높은 음악이 매력입니다.</p>
+                <p>도시의 밤과 감정을 겹쳐 놓은 스타일리시한 미스터리. 분위기와 음악이 특히 인상적입니다.</p>
                 <div class="card-meta">
-                  <span>누아르 · 미스터리</span>
+                  <span>미스터리 · 드라마</span>
                   <span class="score">4.8</span>
                 </div>
               </div>
@@ -946,21 +979,21 @@
               <div class="art"></div>
               <div class="content">
                 <h3>Green Signal</h3>
-                <p>인물의 선택과 관계를 섬세하게 그린 휴먼 드라마. 여운이 길게 남는 서정적인 작품입니다.</p>
+                <p>관계와 선택을 차분하게 따라가는 서사형 드라마. 잔잔하지만 여운이 오래 남는 작품입니다.</p>
                 <div class="card-meta">
-                  <span>드라마 · 휴먼</span>
+                  <span>드라마</span>
                   <span class="score">4.7</span>
                 </div>
               </div>
             </article>
 
-            <article class="movie-card reveal delay-3" style="--from:#f7c873;--to:#4b2c18;">
+            <article class="movie-card reveal delay-4" style="--from:#f7c873;--to:#4b2c18;">
               <div class="art"></div>
               <div class="content">
                 <h3>Golden Frame</h3>
-                <p>밝은 감성과 풍부한 표정 연기가 어우러진 가족 영화. 주말 저녁에 보기 좋은 안정적인 선택입니다.</p>
+                <p>장면마다 색감이 살아 있는 시대극. 가족, 기억, 선택의 감정선이 깔끔하게 이어집니다.</p>
                 <div class="card-meta">
-                  <span>가족 · 코미디</span>
+                  <span>드라마 · 가족</span>
                   <span class="score">4.6</span>
                 </div>
               </div>
@@ -974,16 +1007,18 @@
           <div class="section-head">
             <div>
               <h2 class="section-title">장르별 추천 섹션</h2>
-              <p class="section-subtitle">장르 칩을 누르면 오른쪽 추천 패널이 바뀌도록 구성했습니다. 취향 탐색 흐름이 자연스럽습니다.</p>
+              <p class="section-subtitle">
+                장르 버튼을 누르면 추천 카드와 오늘의 추천 문구가 함께 바뀝니다. 가벼운 인터랙션만 남겨 두었습니다.
+              </p>
             </div>
           </div>
 
           <div class="chips" id="genreChips" aria-label="장르 선택">
-            <button class="chip is-active" data-genre="thriller">스릴러</button>
-            <button class="chip" data-genre="romance">로맨스</button>
-            <button class="chip" data-genre="animation">애니메이션</button>
-            <button class="chip" data-genre="scifi">SF</button>
-            <button class="chip" data-genre="drama">드라마</button>
+            <button class="chip is-active" type="button" data-genre="thriller">스릴러</button>
+            <button class="chip" type="button" data-genre="romance">로맨스</button>
+            <button class="chip" type="button" data-genre="animation">애니메이션</button>
+            <button class="chip" type="button" data-genre="scifi">SF</button>
+            <button class="chip" type="button" data-genre="drama">드라마</button>
           </div>
 
           <div class="genre-layout" style="margin-top:18px;">
@@ -992,7 +1027,7 @@
                 <div class="art"></div>
                 <div class="content">
                   <h3>Night Protocol</h3>
-                  <p>긴장감 있는 전개와 제한된 공간 활용이 탁월한 몰입형 스릴러. 반전의 밀도가 높습니다.</p>
+                  <p>밀폐된 공간에서 시작되는 고강도 추적극. 어두운 분위기와 빠른 전개가 장점입니다.</p>
                   <div class="card-meta"><span>스릴러</span><span class="score">4.9</span></div>
                 </div>
               </article>
@@ -1001,7 +1036,7 @@
                 <div class="art"></div>
                 <div class="content">
                   <h3>Only This Summer</h3>
-                  <p>섬세한 감정선과 풍경 중심 연출이 돋보이는 로맨스. 잔잔한 여운을 원하는 날 적합합니다.</p>
+                  <p>계절감과 감정선이 잘 살아 있는 로맨스. 따뜻한 톤과 섬세한 연출이 돋보입니다.</p>
                   <div class="card-meta"><span>로맨스</span><span class="score">4.8</span></div>
                 </div>
               </article>
@@ -1010,7 +1045,7 @@
                 <div class="art"></div>
                 <div class="content">
                   <h3>Orbital Garden</h3>
-                  <p>미래 도시와 따뜻한 인간관계를 함께 담아낸 SF 드라마. 시각적 상상력이 뛰어납니다.</p>
+                  <p>미래 도시와 자연이 공존하는 SF 서사. 상상력과 시각적 밀도가 높은 작품입니다.</p>
                   <div class="card-meta"><span>SF</span><span class="score">4.7</span></div>
                 </div>
               </article>
@@ -1019,7 +1054,7 @@
                 <div class="art"></div>
                 <div class="content">
                   <h3>Sketchbook Days</h3>
-                  <p>손그림 질감과 따뜻한 색채가 살아 있는 가족 애니메이션. 세대가 함께 보기 좋습니다.</p>
+                  <p>손그림 감성이 살아 있는 애니메이션. 가족이 함께 보기 좋은 밝은 분위기입니다.</p>
                   <div class="card-meta"><span>애니메이션</span><span class="score">4.9</span></div>
                 </div>
               </article>
@@ -1027,27 +1062,27 @@
 
             <aside class="recommend-panel" id="recommendPanel">
               <h3>스릴러 취향 추천</h3>
-              <p>서늘한 분위기, 예측 불가한 반전, 짙은 그림자가 매력인 작품들로 큐레이션했습니다.</p>
+              <p>긴장감이 빠르게 올라가고, 결말까지 힘이 유지되는 작품 중심으로 구성했습니다.</p>
               <div class="recommend-list">
                 <div class="recommend-item">
                   <div class="mini-art" style="--from:#ff7385;--to:#34213d;"></div>
                   <div>
                     <h4>Night Protocol</h4>
-                    <p>밀실형 전개, 긴장감 높은 엔딩.</p>
+                    <p>밀폐 공간, 고압 추적, 강한 리듬.</p>
                   </div>
                 </div>
                 <div class="recommend-item">
                   <div class="mini-art" style="--from:#5167ff;--to:#1a2141;"></div>
                   <div>
                     <h4>Silent Avenue</h4>
-                    <p>도시 미스터리와 심리전 중심.</p>
+                    <p>도시 미스터리와 느린 불안감.</p>
                   </div>
                 </div>
                 <div class="recommend-item">
                   <div class="mini-art" style="--from:#f7c873;--to:#5a3020;"></div>
                   <div>
                     <h4>After the Lights</h4>
-                    <p>느리게 번지는 진실과 서스펜스.</p>
+                    <p>밝게 보이지만 안쪽은 어두운 이야기.</p>
                   </div>
                 </div>
               </div>
@@ -1061,7 +1096,9 @@
           <div class="section-head">
             <div>
               <h2 class="section-title">오늘의 추천 영화 섹션</h2>
-              <p class="section-subtitle">플랫폼의 핵심 추천 영역입니다. 한 작품을 깊이 있게 소개해 클릭 전환을 돕습니다.</p>
+              <p class="section-subtitle">
+                오늘 가장 잘 맞는 한 편을 중심으로, 추천 이유와 관련 포인트를 짧게 보여줍니다.
+              </p>
             </div>
           </div>
 
@@ -1071,8 +1108,8 @@
                 <span class="eyebrow">Daily Recommendation</span>
                 <h3>Midnight Signal</h3>
                 <p>
-                  폐쇄적인 미래 도시에서 벌어지는 실종 사건을 추적하는 SF 스릴러.
-                  감정적인 여정과 빠른 전개가 균형을 이루며, 밤에 보기 좋은 집중형 추천작입니다.
+                  미래 도시에서 벌어지는 신호 왜곡 사건을 추적하는 SF 스릴러.
+                  차분한 감정선과 빠른 전개가 균형을 이뤄 밤에 보기 좋은 집중형 추천작입니다.
                 </p>
               </div>
               <div class="poster-tags">
@@ -1085,34 +1122,37 @@
             <div class="today-details">
               <div class="stat-grid">
                 <div class="stat">
-                  <span>추천 이유</span>
-                  <strong>몰입도 높은 전개</strong>
+                  <span>추천 기준</span>
+                  <strong>몰입감 높은 전개</strong>
                 </div>
                 <div class="stat">
                   <span>감상 포인트</span>
-                  <strong>색채와 사운드</strong>
+                  <strong>분위기와 사운드</strong>
                 </div>
                 <div class="stat">
-                  <span>선호 관객</span>
-                  <strong>서스펜스 팬</strong>
+                  <span>러닝타임</span>
+                  <strong>128분</strong>
                 </div>
                 <div class="stat">
-                  <span>예상 만족도</span>
-                  <strong>98%</strong>
+                  <span>유저 반응</span>
+                  <strong>98% 만족</strong>
                 </div>
               </div>
 
-              <div class="movie-card" style="--from:#0f1530;--to:#101a2c;">
-                <div class="content">
-                  <h3>함께 보면 좋은 작품</h3>
-                  <p>
-                    추천작과 유사한 분위기의 영화를 연달아 제안해, 감상 흐름이 끊기지 않도록 설계했습니다.
-                  </p>
-                  <div class="card-meta">
-                    <span>추천 연계</span>
-                    <span class="score">3편</span>
-                  </div>
-                </div>
+              <div class="detail-card">
+                <h4>이런 날 보면 좋은 영화</h4>
+                <p>
+                  집중해서 보고 싶을 때, 혹은 장면 전환이 선명한 영화를 찾을 때 잘 맞습니다.
+                  추천 알고리즘이 아니라도 문맥만으로 선택할 수 있게 설계한 영역입니다.
+                </p>
+              </div>
+
+              <div class="detail-card">
+                <h4>서비스 메모</h4>
+                <p>
+                  현재 구성은 단일 HTML 파일 안에서 동작하는 데모 구조입니다. 외부 라이브러리 없이
+                  카드 상태와 문구만 바뀌도록 유지했습니다.
+                </p>
               </div>
             </div>
           </div>
@@ -1139,76 +1179,73 @@
     const genreData = {
       thriller: {
         title: '스릴러 취향 추천',
-        description: '서늘한 분위기, 예측 불가한 반전, 짙은 그림자가 매력인 작품들로 큐레이션했습니다.',
+        description: '긴장감이 빠르게 올라가고, 결말까지 힘이 유지되는 작품 중심으로 구성했습니다.',
         items: [
-          ['Night Protocol', '밀실형 전개, 긴장감 높은 엔딩.', '#ff7385', '#34213d'],
-          ['Silent Avenue', '도시 미스터리와 심리전 중심.', '#5167ff', '#1a2141'],
-          ['After the Lights', '느리게 번지는 진실과 서스펜스.', '#f7c873', '#5a3020']
-        ]
+          ['Night Protocol', '밀폐 공간, 고압 추적, 강한 리듬.', '#ff7385', '#34213d'],
+          ['Silent Avenue', '도시 미스터리와 느린 불안감.', '#5167ff', '#1a2141'],
+          ['After the Lights', '밝게 보이지만 안쪽은 어두운 이야기.', '#f7c873', '#5a3020']
+        ],
+        spotlight: {
+          title: 'Midnight Signal',
+          text: '미래 도시에서 벌어지는 신호 왜곡 사건을 추적하는 SF 스릴러. 차분한 감정선과 빠른 전개가 균형을 이뤄 밤에 보기 좋은 집중형 추천작입니다.',
+          tags: ['SF 스릴러', '평점 4.9', '오늘의 픽']
+        }
       },
       romance: {
         title: '로맨스 취향 추천',
-        description: '감정의 결을 섬세하게 따라가는 작품들로, 대사와 시선의 여운이 깊게 남습니다.',
+        description: '감정의 결을 섬세하게 따라가는 작품들로, 조용한 여운이 길게 남도록 구성했습니다.',
         items: [
-          ['Only This Summer', '풍경과 감정선이 조화로운 로맨스.', '#ffb3cf', '#64395a'],
-          ['Late Letter', '편지와 기억을 엮는 잔잔한 감성.', '#f7c873', '#5a3020'],
-          ['Window Seat', '서로 다른 계절을 지나 만나는 이야기.', '#83dfff', '#1b3465']
-        ]
+          ['Only This Summer', '계절감과 감정선이 잘 살아 있는 로맨스.', '#ffb3cf', '#64395a'],
+          ['Late Letter', '늦은 밤에 읽는 편지 같은 감성.', '#f7c873', '#5a3020'],
+          ['Window Seat', '서로 다른 시선이 만나는 작은 이야기.', '#83dfff', '#1b3465']
+        ],
+        spotlight: {
+          title: 'Only This Summer',
+          text: '계절의 온도와 관계의 변화를 섬세하게 풀어낸 로맨스. 과장되지 않은 감정선이 안정적으로 이어집니다.',
+          tags: ['로맨스', '평점 4.8', '감정선 중심']
+        }
       },
       animation: {
         title: '애니메이션 취향 추천',
-        description: '색과 움직임이 살아 있는 따뜻한 작품들입니다. 가족과 함께 보기에도 좋습니다.',
+        description: '색감과 상상력이 살아 있는 작품 위주로, 가족과 함께 보기에도 좋은 구성을 넣었습니다.',
         items: [
-          ['Sketchbook Days', '손그림 질감이 살아 있는 가족 애니메이션.', '#89f0c8', '#22594b'],
-          ['Cloud Harbor', '하늘을 나는 도시의 모험담.', '#83dfff', '#1b3465'],
-          ['Pocket Galaxy', '작은 우주 속에서 성장하는 캐릭터들.', '#ff9a76', '#5a2237']
-        ]
+          ['Sketchbook Days', '손그림 감성이 살아 있는 애니메이션.', '#89f0c8', '#22594b'],
+          ['Cloud Harbor', '하늘 위 도시를 여행하는 모험극.', '#83dfff', '#1b3465'],
+          ['Pocket Galaxy', '작은 우주를 향한 귀여운 여정.', '#ff9a76', '#5a2237']
+        ],
+        spotlight: {
+          title: 'Sketchbook Days',
+          text: '손으로 그린 질감이 살아 있는 애니메이션. 가족과 함께 보기 좋은 밝은 톤의 감동과 리듬이 있습니다.',
+          tags: ['애니메이션', '평점 4.9', '가족 추천']
+        }
       },
       scifi: {
         title: 'SF 취향 추천',
-        description: '미래적 상상력과 세계관 설계가 돋보이는 작품들로, 비주얼과 개념 둘 다 강합니다.',
+        description: '미래 설정과 세계관이 뚜렷한 작품들을 모아, 상상력과 몰입감을 함께 높였습니다.',
         items: [
-          ['Orbital Garden', '미래 도시와 인간관계가 공존하는 SF 드라마.', '#83dfff', '#1b3465'],
-          ['Glass Signal', '인공지능과 기억의 경계에 대한 질문.', '#89f0c8', '#22594b'],
-          ['Void Atlas', '거대한 우주 미스터리를 따라가는 서사.', '#f7c873', '#4b2c18']
-        ]
+          ['Orbital Garden', '미래 도시와 자연이 공존하는 SF 서사.', '#83dfff', '#1b3465'],
+          ['Glass Signal', '기억과 경계에 대한 차분한 질문.', '#89f0c8', '#22594b'],
+          ['Void Atlas', '먼 우주를 향한 정교한 탐험기.', '#f7c873', '#4b2c18']
+        ],
+        spotlight: {
+          title: 'Orbital Garden',
+          text: '미래 도시와 자연이 공존하는 세계를 차분하게 따라가는 SF 작품. 큰 설정을 과장 없이 잘 풀어냅니다.',
+          tags: ['SF', '평점 4.8', '미래 감성']
+        }
       },
       drama: {
         title: '드라마 취향 추천',
-        description: '관계와 선택, 그리고 오래 남는 감정을 중심에 둔 깊이 있는 작품들입니다.',
+        description: '관계, 선택, 성장의 흐름을 중심으로 묵직하지만 과하지 않게 구성했습니다.',
         items: [
-          ['Green Signal', '선택의 무게를 그린 휴먼 드라마.', '#7cf0c4', '#133c42'],
-          ['Quiet Morning', '소소한 일상 속 회복의 서사.', '#f7c873', '#4b2c18'],
-          ['The Last Season', '계절이 바뀌며 변하는 관계의 초상.', '#ff9a76', '#5a2237']
-        ]
-      }
-    };
-
-    const spotlightData = {
-      thriller: {
-        title: 'Midnight Signal',
-        text: '폐쇄적인 미래 도시에서 벌어지는 실종 사건을 추적하는 SF 스릴러. 감정적인 여정과 빠른 전개가 균형을 이루며, 밤에 보기 좋은 집중형 추천작입니다.',
-        tags: ['SF 스릴러', '평점 4.9', '오늘의 픽']
-      },
-      romance: {
-        title: 'Only This Summer',
-        text: '서로 다른 계절을 지나 다시 만나는 두 사람의 이야기. 바람, 빛, 침묵의 리듬이 아름답게 이어지는 감성 로맨스입니다.',
-        tags: ['로맨스', '평점 4.8', '감성 추천']
-      },
-      animation: {
-        title: 'Sketchbook Days',
-        text: '손으로 그린 질감이 살아 있는 따뜻한 애니메이션. 가족과 함께 볼 때 더욱 빛나는 섬세한 감동이 있습니다.',
-        tags: ['애니메이션', '평점 4.9', '가족 추천']
-      },
-      scifi: {
-        title: 'Orbital Garden',
-        text: '미래 도시와 따뜻한 인간관계를 함께 담아낸 SF 드라마. 거대한 상상력과 부드러운 감정선이 공존합니다.',
-        tags: ['SF', '평점 4.8', '미래 감성']
-      },
-      drama: {
-        title: 'Green Signal',
-        text: '인물의 선택과 관계를 섬세하게 그린 휴먼 드라마. 여운이 길게 남는 서정적인 작품입니다.',
-        tags: ['드라마', '평점 4.7', '휴먼']
+          ['Green Signal', '관계의 균열을 섬세하게 따라가는 드라마.', '#7cf0c4', '#133c42'],
+          ['Quiet Morning', '아침의 공기처럼 담백한 서사.', '#f7c873', '#4b2c18'],
+          ['The Last Season', '계절이 바뀌며 흔들리는 감정의 기록.', '#ff9a76', '#5a2237']
+        ],
+        spotlight: {
+          title: 'Green Signal',
+          text: '관계와 선택을 조용하게 쌓아 올리는 드라마. 자극적이지 않지만 오래 기억되는 유형의 추천작입니다.',
+          tags: ['드라마', '평점 4.7', '잔잔한 여운']
+        }
       }
     };
 
@@ -1216,41 +1253,42 @@
     const panel = document.getElementById('recommendPanel');
     const spotlight = document.getElementById('todaySpotlight');
 
+    function renderGenre(genre) {
+      const data = genreData[genre];
+
+      panel.innerHTML = `
+        <h3>${data.title}</h3>
+        <p>${data.description}</p>
+        <div class="recommend-list">
+          ${data.items.map(([title, desc, from, to]) => `
+            <div class="recommend-item">
+              <div class="mini-art" style="--from:${from};--to:${to}; background: linear-gradient(135deg, ${from}, ${to});"></div>
+              <div>
+                <h4>${title}</h4>
+                <p>${desc}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      spotlight.innerHTML = `
+        <div>
+          <span class="eyebrow">Daily Recommendation</span>
+          <h3>${data.spotlight.title}</h3>
+          <p>${data.spotlight.text}</p>
+        </div>
+        <div class="poster-tags">
+          ${data.spotlight.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
+        </div>
+      `;
+    }
+
     chips.forEach((chip) => {
       chip.addEventListener('click', () => {
         chips.forEach((item) => item.classList.remove('is-active'));
         chip.classList.add('is-active');
-
-        const genre = chip.dataset.genre;
-        const data = genreData[genre];
-        const spotlightInfo = spotlightData[genre];
-
-        panel.innerHTML = `
-          <h3>${data.title}</h3>
-          <p>${data.description}</p>
-          <div class="recommend-list">
-            ${data.items.map(([title, desc, from, to]) => `
-              <div class="recommend-item">
-                <div class="mini-art" style="--from:${from};--to:${to}; background: linear-gradient(135deg, ${from}, ${to});"></div>
-                <div>
-                  <h4>${title}</h4>
-                  <p>${desc}</p>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        `;
-
-        spotlight.innerHTML = `
-          <div>
-            <span class="eyebrow">Daily Recommendation</span>
-            <h3>${spotlightInfo.title}</h3>
-            <p>${spotlightInfo.text}</p>
-          </div>
-          <div class="poster-tags">
-            ${spotlightInfo.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
-          </div>
-        `;
+        renderGenre(chip.dataset.genre);
       });
     });
   </script>
